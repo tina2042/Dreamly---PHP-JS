@@ -1,63 +1,168 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
-}
-.backgroundrectangle{
-    width: 731px;
-    height: 900px;
+    background: linear-gradient(to right, #A6A2DA 50%, #FFF 50%);
     display: flex;
-    flex-direction: row;
-    background: #A6A2DA;
-}
-.container{
-    background: #FFFEF9;
-}
-.sally{
-    width: 408px;
-    height: 408px;
-    flex-shrink: 0;
-    border-right: 964em;
-    border-top: 83em;
-    border-left: 68em;
-    border-bottom: 409em;
-}
-.welcome{
-    color: #000;
-    font-family: Poppins;
-    font-size: 20px;
-    font-style: normal;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    line-height: normal;
 }
-.loginrectangle{
-    width: 539px;
-    height: 741px;
+
+.Welcome {
+    margin-left: calc(3.7125vw); /* Wyrównanie do lewej */
+    font-size: 1.25em;
+    font-weight: 400;
+}
+
+.Welcome > span {
+    color: #3B5775;
+    font-family: 'Pacifico';
+}
+.no-account-section > p {
+    margin-bottom: 0;
+}
+.notes img, .sally img {
+    min-width: 100px;
+    max-width: 500px;
+    height: auto;
+    z-index: 1;
+}
+
+.notes img {
+    width: 30vw;
+    position: absolute;
+    left: 5%;
+    top: 10px;
+}
+
+.loginrectangle {
+    width: calc(100vw / 3);
+    height: 90vh;
+    
     border-radius: 40px;
     background: #FFF;
     box-shadow: 0px 4px 35px 0px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: row;
-    margin-top: 79px;
-    margin-bottom: 80px;
 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+
+    z-index: 10;
 }
+.loginrectangle form {
+    width: calc(100% - 7.425vw);  
+    margin: 0 calc(3.7125vw);    
+}
+
+.sally img {
+    width: 40vw;
+    position: absolute;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+}
+
 form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    
 }
-form > input
-{
+
+form > input {
+    height: calc(100vh * (50 / 900));
     border-radius: 9px;
-    border: 1px solid #4285F4;
+    border: 1px solid #ADADAD;
     background: #FFF;
 }
+
 button{
-    border-radius: 10px;
-background: #A6A2DA;
-box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
+    height: calc(100vh * (50 / 900));
+    border: none;
+    border-radius: 9px;
+    background: #C9B4EC;
+}
+
+.submit{
+    margin-top: 30px;
+    background: #A6A2DA;
+    box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
+}
+
+.top-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.no-account-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: calc(3.7125vw); /* Wyrównanie do prawej */
+}
+.no-account-section > a {
+    color: #3B5775;
+}
+.Sign-in {
+    font-size: 3.4em;
+    font-weight: 500;
+    align-self: flex-start; /* Wyrównanie do lewej */
+    margin-left: calc(3.7125vw);
+}
+
+form p {
+    margin-bottom: 10px; /* Bliżej inputów */
+}
+
+form > input[name="password"] {
+    position: relative; /* Będzie kontenerem dla "Forgot your password?" */
+}
+
+form a[href^="https://youtu.be/"] {
+    position: absolute;
+    right: 10px; /* Odsunięcie od prawej krawędzi inputa */
+    bottom: -20px; /* Umieszczenie pod inputem */
+}
+
+form > .submit {
+    width: 100%; /* Aby był szerszy */
+}
+
+form > p:last-of-type {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: space-between;  /* dodaje odstępy między przyciskami */
+    width: 100%;  /* zapewnia, że przyciski rozciągną się na całą szerokość dostępnego miejsca */
+}
+
+.google {
+    flex: 1.5;  /* sprawia, że przycisk Google jest szerszy */
+    margin-right: 5px;
+}
+
+.facebook {
+    flex: 1;
+    background: #F6F6F6;
+}
+
+form > .google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+form > .google img {
+    margin-right: 10px;
+}
+
+form > .facebook {
+    text-align: center;
 }
 

@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    margin-top: 80px;
+   }
+   nav {
+    background-color: black;
+    color: white;
+    height: 80px;
+    width: 100%;
+    font-size: 1.5rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+   }
+   nav > ul {
+    gap: 2em;
+   }
+   main {
+    width: 100vw;
+    background-color: aquamarine;
+   }
+   main > .elements {
+    background-color: beige;
+    width: calc((100vw / 3) * 2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 2em;
+   }
+   main > .sidebar {
+    background-color: rgb(255, 230, 210);
+    width: calc(100vw / 3);
+    align-self: flex-start;
+   }
+   .elements > .container > img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+   }
+   .flex-row-center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
