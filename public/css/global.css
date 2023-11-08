@@ -1,45 +1,61 @@
 body {
     margin: 0;
-    margin-top: 80px;
-   }
-   nav {
-    background-color: black;
-    color: white;
-    height: 80px;
-    width: 100%;
-    font-size: 1.5rem;
-    position: fixed;
-    left: 0;
-    top: 0;
-   }
-   nav > ul {
-    gap: 2em;
-   }
-   main {
-    width: 100vw;
-    background-color: aquamarine;
-   }
-   main > .elements {
-    background-color: beige;
-    width: calc((100vw / 3) * 2);
+    padding: 0;
+    background: linear-gradient(to right, #A6A2DA 50%, #FFF 50%);
     display: flex;
-    flex-wrap: wrap;
-    gap: 2em;
-    justify-content: center;
-    padding: 2em;
-   }
-   main > .sidebar {
-    background-color: rgb(255, 230, 210);
-    width: calc(100vw / 3);
-    align-self: flex-start;
-   }
-   .elements > .container > img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-   }
-   .flex-row-center-center {
-    display: flex;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;
-   }
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+.notes img, .sally img {
+    min-width: 100px;
+    max-width: 500px;
+    height: auto;
+    z-index: 1;
+}
+.notes img {
+    width: 30vw;
+    position: absolute;
+    left: 5%;
+    top: 10px;
+}
+
+.loginrectangle {
+    width: calc(100vw / 3);
+    height: 90vh;
+    
+    border-radius: 40px;
+    background: #FFF;
+    box-shadow: 0px 4px 35px 0px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+
+    z-index: 10;
+}
+
+.sally img {
+    width: 40vw;
+    position: absolute;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+}
+
+button{
+    height: calc(100vh * (50 / 900));
+    border: none;
+    border-radius: 9px;
+    background: #A6A2DA;
+    width: 100%;
+    
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
