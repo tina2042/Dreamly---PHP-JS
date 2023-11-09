@@ -57,41 +57,5 @@ form > input {
     font-size: 0.9em;
 }
 
-form > p:last-of-type { /*wyśrodkowanie napisu OR */
-    text-align: center;
-    margin: 1vh 0;
-}
 
-.submit{
-    margin-top: 30px;
-    box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
-}
-
-.social-buttons {
-    display: flex;
-    justify-content: space-between;  /* dodaje odstępy między przyciskami */
-    width: 100%;  /* zapewnia, że przyciski rozciągną się na całą szerokość dostępnego miejsca */
-}
-
-.social-buttons > .google {
-    flex: 1.5;  /* sprawia, że przycisk Google jest szerszy */
-    margin-right: 5px;
-    background: #C9B4EC;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.social-buttons > .google img {
-    margin-right: 10px;
-}
-
-.social-buttons > .facebook {
-    flex: 1;
-    background: #F6F6F6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
