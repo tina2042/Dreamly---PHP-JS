@@ -79,7 +79,7 @@ input {
 .name p{
     text-align: left;
 }
-.name > .names{
+.name > .surname{
     margin-left: 1.75vw;
 }
 

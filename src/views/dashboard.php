@@ -27,9 +27,13 @@
             </div>
         </div>
         <div class="buttons">
+        <a href="login">
             <button>Sign in</button>
-            <p>OR</p>
+        </a>
+        <p>OR</p>
+        <a href="register">
             <button>Sign up</button>
+        </a>
         </div>
         <div class="sally">
             <img src="/public/img/sally.svg">
