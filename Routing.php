@@ -1,7 +1,6 @@
 <?php
 
-require_once __DIR__.'/src/controllers/DefaultController.php';
-require_once __DIR__.'/src/controllers/SecurityController.php';
+require_once "/app/autoloader.php";
 
 class Routing{
     public static $routes;
@@ -16,7 +15,9 @@ class Routing{
   public static function run ($url) {
     $action = explode("/", $url)[0];
     if (!array_key_exists($action, self::$routes)) {
-      //die("Wrong url!");//dodac error page zamiast die z ErrorController
+        $errorController = new ErrorController();
+        $errorController->showErrorPage(404); 
+        return;
     }
 
     $controller = self::$routes[$action];

@@ -14,16 +14,16 @@
 <body>
 
     <nav class="navbar">
-        <a href="#" class="nav-link">
-            <img src="/public/img/home-icon.svg" alt="Home Icon">
+        <a href="main" class="nav-link">
+            <i class="fa-solid fa-house fa-2xl" style="color: #A6A2DA;"></i>
                 Main page
         </a>
         <a href="#" class="nav-link">
-            <img src="/public/img/calendar-icon.svg" alt="Calendar Icon">
+            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #d0cef4;"></i>
                 Calendar
         </a>
         <a href="#" class="nav-link">
-            <img src="/public/img/user-icon.svg" alt="User Icon">
+        <i class="fa-solid fa-user fa-2xl" style="color: #d0cef4;"></i>
                 Settings
         </a>
     </nav>
@@ -81,11 +81,17 @@
                 </div>
                 <div>
                     <i class="fa-solid fa-comment fa-xl"></i>
-                    <p><?= $dream->getCommentsAmount() ?></p>
+                    <p><?= $dreams->getCommentsAmount() ?></p>
                 </div>
             </div>
         </div>
     </div>
     <?php endforeach; ?>
+    <div class="sally">
+        <img src="/public/img/sally.svg">
+    </div>
+    <div class="floating-button">
+        <a href='adding_dream'><button>Add dream</button></a>
+    </div>
 </body>
 </html>

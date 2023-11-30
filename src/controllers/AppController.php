@@ -31,8 +31,12 @@ class AppController {
             ob_start();
             include $templatePath;
             $output = ob_get_clean();
+        } else{
+            $errorController = new ErrorController();
+            $errorController->showErrorPage(404); 
+            return;
         }
-        //else wystwietlanie strony bledu TODO
+        
         print $output;
     }
 }

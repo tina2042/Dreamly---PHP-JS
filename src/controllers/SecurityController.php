@@ -1,14 +1,13 @@
 <?php
 
-require_once 'AppController.php';
-require_once __DIR__ .'/../models/User.php';
+require_once "/app/autoloader.php";
 
 class SecurityController extends AppController {
 
     public function login()
     {   
         $user = new User('jsnow@pk.edu.pl', 'admin', 'Johnny', 'Snow');
-
+       // $user->setPhoto()
         if (!$this->isPost()) {
             return $this->render('login');
         }
@@ -43,7 +42,7 @@ class SecurityController extends AppController {
           //  return $this->render('register', ['messages' => ['Please provide proper password']]);
         //}
 
-        //TODO try to use better hash function
+        
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
         $user = new User($email, $passwordHash, $name, $surname);      
 

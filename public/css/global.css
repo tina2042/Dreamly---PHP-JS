@@ -119,6 +119,7 @@ form > p:last-of-type { /*wyśrodkowanie napisu OR */
     overflow: hidden;
     position: fixed;
     width: 100%;
+    height: 8vh;
     top: 0;
     z-index: 1000;
     display: flex;
@@ -138,10 +139,8 @@ form > p:last-of-type { /*wyśrodkowanie napisu OR */
     box-sizing: border-box; /* Uwzględnienie padding w szerokości */
 }
 
-.nav-link img {
-    width: 5vh; /* Zwiększenie rozmiaru ikon */
-    height: 5vh;
-    margin-right: 1vw; /* Dodatkowy odstęp pomiędzy ikoną a tekstem */
+.nav-link i {
+    margin: 0vh 1vw 0vh 1vw; /* Dodatkowy odstęp pomiędzy ikoną a tekstem */
 }
 
 .nav-link:hover {
@@ -152,3 +151,21 @@ form > p:last-of-type { /*wyśrodkowanie napisu OR */
 .content {
     margin-top: 60px;
 }
+
+/* Stylowanie przycisku */
+.floating-button {
+    position: fixed;
+    bottom: 5vh;
+    right: 3vw;
+    z-index: 999; 
+  }
+  
+
+  .floating-button button {
+    padding: 10px 20px;
+    border-radius: 35.765px;
+    width: 15vw;
+    background: #C9B4EC;
+    cursor: pointer;
+
+  }
