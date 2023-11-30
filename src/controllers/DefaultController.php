@@ -14,13 +14,13 @@ class DefaultController extends AppController {
 
     public function main()
     {
-        $dream1 = new Dream(1, "Flying High", "Soaring through the sky among the clouds.", "2023-11-16");
-        $dream2 = new Dream(1, "Underwater Adventure", "Exploring a vibrant underwater world.", "2023-11-17");
-        $dream3 = new Dream(1, "Time-Traveling Exploration", "Visiting different historical eras.", "2023-11-18");
-        $dream4 = new Dream(1, "Meeting a Famous Personality", "Encountering a personal hero.", "2023-11-19");
-        $dream5 = new Dream(1, "Talking Animal Companion", "Bonding with a wise owl on whimsical adventures.", "2023-11-20");
-        $dreams = [$dream1, $dream2, $dream3, $dream4, $dream5];
-        $this->render('main', ["dreams"=>$dreams]);//po przecinku kolejne zmienne
+        $dream1 = new Dream(new User('jsnow@pk.edu.pl', 'admin', 'Johnny', 'Snow'), "Flying High", "Soaring through the sky among the clouds.", "2023-11-16", 10, 0);
+        $dream2 = new Dream(new User('pmorgan@pk.edu.pl', 'admin', 'Paul', 'Morgan'), "Underwater Adventure", "Exploring a vibrant underwater world.", "2023-11-17", 0, 0);
+        $dream3 = new Dream(new User('pp@pk.edu.pl', 'admin', 'Peter', 'Parker'), "Time-Traveling Exploration", "Visiting different historical eras.", "2023-11-18", 0, 0);
+        $dream4 = new Dream(new User('ocap@pk.edu.pl', 'admin', 'Oliver', 'Capitan'), "Meeting a Famous Personality", "Encountering a personal hero.", "2023-11-19",10, 30);
+        $dream5 = new Dream(new User('gorbus@pk.edu.pl', 'admin', 'George', 'Bush'), "Talking Animal Companion", "Bonding with a wise owl on whimsical adventures.", "2023-11-20", 3,4);
+        $dreams = [$dream2, $dream3, $dream4, $dream5];
+        $this->render('main', ["dreams"=>$dream1, "fdreams"=>$dreams]);//po przecinku kolejne zmienne
     }
 
     

@@ -1,29 +1,26 @@
 <?php
 
 class Dream {
-    //private $id;
-    //private $userId;
-    private $title;
-    private $description;
-    private $date;
+    private User $user;
+    private String $title;
+    private String $description;
+    private String $date;
+    private int $likes;
+    private int $commentAmount;
 
-    public function __construct($userId, $title, $description, $date) {
-       // $this->userId = $userId;
-       // $this->title = $title;
+    public function __construct(User $user, String $title, String $description, String $date, int $likes, int $commentAmount) {
+        $this->user = $user;
+        $this->title = $title;
         $this->description = $description;
         $this->date = $date;
+        $this->likes = $likes;
+        $this->commentAmount = $commentAmount;
     }
 
-    // Getter and Setter methods for private properties
-    /*
-    public function getId() {
-        return $this->id;
+    public function getUserName(){
+        return $this->user->getName();
     }
 
-    public function getUserId() {
-        return $this->userId;
-    }
-        */
     public function getTitle() {
         return $this->title;
     }
@@ -47,6 +44,14 @@ class Dream {
     public function setDate($date) {
         $this->date = $date;
     }
+
+    public function getLikes() {
+        return $this->likes;
+    }
+    public function getCommentsAmount() {
+        return $this->commentAmount;
+    }
+
 
     // Additional methods for dream management can be added as needed
 

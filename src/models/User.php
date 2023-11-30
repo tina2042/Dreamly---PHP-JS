@@ -4,6 +4,7 @@ class User{
     private $password;
     private $name;
     private $surname;
+    private $photo;
 
     public function __construct(
         string $email,
@@ -44,6 +45,12 @@ class User{
     public function setSurname(string $surname): void
     {
         $this->surname = $surname;
+    }
+    public function getPhoto() {
+        return $this->photo;
+    }
+    public function setPhoto($photo) {
+         $this->photo=$photo;
     }
 
 }

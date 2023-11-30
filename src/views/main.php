@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
+    <script src="https://kit.fontawesome.com/a99d7ad425.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -11,53 +12,80 @@
     <link rel="stylesheet" href="/public/css/main.css">
 </head>
 <body>
+
     <nav class="navbar">
         <a href="#" class="nav-link">
             <img src="/public/img/home-icon.svg" alt="Home Icon">
-            Main page
+                Main page
         </a>
         <a href="#" class="nav-link">
             <img src="/public/img/calendar-icon.svg" alt="Calendar Icon">
-            Calendar
+                Calendar
         </a>
         <a href="#" class="nav-link">
             <img src="/public/img/user-icon.svg" alt="User Icon">
-            Settings
+                Settings
         </a>
     </nav>
     
-        <div class="notes">
-            <img src="/public/img/notes.svg">
-        </div>
-        <div class="add-dream-form">
-            <form>
-                <input type="text" id="title" name="title" placeholder="Enter title">
-                <textarea id="content" name="content" placeholder="Write your dream here"></textarea>
-                
-                <button type="submit">Add Dream</button>
-            </form>
-        </div>
-    <div class="my-dream">
-        <?php foreach($dreams as $dream): ?>
-        <h3>My last dream</h3>
-        <div class="dream">
-            <h4><?= $dream->getTitle() ?></h4>
-            <p><?= $dream->getDescription() ?></p>
-            <data><?= $dream->getDate() ?></data>
-        </div>
-        <?php endforeach; ?>
+
+    <div class="notes">
+        <img src="/public/img/notes.svg">
     </div>
-    <div class="friend-dream">
-        <h3>Friends dreams</h3>
-        <div class="dream">
-            <img src="">
-            <h4>Title</h4>
-            <p>User</p>
-            <p>Lorem ipsum</p>
-            <data>20 Feb</data>
-        </div>
+    <div class="add-dream-form">
+        <form>
+            <input type="text" id="title" name="title" placeholder="Enter title">
+            <textarea id="content" name="content" placeholder="Write your dream here"></textarea>
+                
+            <button type="submit">Add Dream</button>
+        </form>
     </div>
     
+    <h3 id="block-name">My last dream</h3>
 
+    <div class="my-dream">
+        <div id="top">
+            <h4><?= $dreams->getTitle() ?></h4>
+            <data><?= $dreams->getDate() ?></data>
+        </div>
+        <p><?= $dreams->getDescription() ?></p>
+        <div id=social-icons>
+            <div>
+                <i class="fa-solid fa-heart fa-xl"></i>
+                <p><?= $dreams->getLikes() ?></p>
+            </div>
+            <div>
+                <i class="fa-solid fa-comment fa-xl"></i>
+                <p><?= $dreams->getCommentsAmount() ?></p>
+            </div>
+        </div>
+    </div>
+
+    <h3 id="block-name">Friends dreams</h3>
+
+    <?php foreach($fdreams as $dream): ?>
+    <div class="friend-dream">
+        <div id="top">
+            <img src="/public/img/photo.svg">
+            <p><?= $dream->getUserName() ?></p>
+            <h4><?= $dream->getTitle() ?></h4>
+            <data><?= $dream->getDate() ?></data>
+        </div>
+
+        <div id="bottom">
+            <p><?= $dream->getDescription() ?></p>
+            <div id=social-icons>
+                <div>
+                    <i class="fa-solid fa-heart fa-xl"></i>
+                    <p><?= $dream->getLikes() ?></p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-comment fa-xl"></i>
+                    <p><?= $dream->getCommentsAmount() ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
 </body>
 </html>
