@@ -11,13 +11,8 @@ services:
       - .:/app/
     links:
       - php
-
-  php:
-    build:
-      context: .
-      dockerfile: docker/php/Dockerfile
-    volumes:
-      - .:/app/
+    networks:
+      - pg-network
 
   db:
     build:
@@ -29,6 +24,18 @@ services:
       - pg-network
     volumes:
       - pg-data:/var/lib/postgresql/data
+<<<<<<< HEAD
+=======
+  
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/app/
+    networks:
+      - pg-network
+>>>>>>> 670f11a (Database updates)
 
   pgadmin:
     image: dpage/pgadmin4:latest
