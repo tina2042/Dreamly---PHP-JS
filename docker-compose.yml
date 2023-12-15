@@ -24,7 +24,16 @@ services:
       - pg-network
     volumes:
       - pg-data:/var/lib/postgresql/data
-      
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/app/
+    networks:
+    - pg-network
+
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pg-admin
