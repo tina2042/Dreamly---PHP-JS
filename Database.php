@@ -1,7 +1,7 @@
 <?php
 
 require_once "/app/autoloader.php";
-
+require_once "config.php";
 class Database {
     private $username;
     private $password;

@@ -46,9 +46,11 @@ class User{
     {
         $this->surname = $surname;
     }
+    
     public function getPhoto() {
         return $this->photo;
     }
+
     public function setPhoto($photo) {
          $this->photo=$photo;
     }
