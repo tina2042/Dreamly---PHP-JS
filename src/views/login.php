@@ -18,6 +18,8 @@
     <div class="notes">
         <img src="/public/img/notes.svg">
     </div>
+    <?php if(isset($messages)) { ?>
+        
     <div class="messages">
         <?php
             if(isset($messages)){
@@ -27,6 +29,7 @@
             }
         ?>
     </div>
+    <?php } ?>
     <div class="loginrectangle">
         <div class="top-section">
             <h3 class="Welcome">Welcome to <span>Dreamly</span></h3>

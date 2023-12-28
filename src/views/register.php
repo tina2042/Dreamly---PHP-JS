@@ -17,7 +17,8 @@
     <div class="notes">
         <img src="/public/img/notes.svg">
     </div>
-    <div class="messages <?php echo isset($messages) ? 'show' : ''; ?>">
+    <?php if(isset($messages)) { ?>
+    <div class="messages">
         <?php
             if(isset($messages)){
                 foreach($messages as $message) {
@@ -26,6 +27,7 @@
             }
         ?>
     </div>
+    <?php } ?>
     <div class="loginrectangle">
         <div class="top-section">
             <h3 class="Welcome">Welcome to <span>Dreamly</span></h3>

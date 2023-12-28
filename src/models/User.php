@@ -8,19 +8,21 @@ class User{
     private $photo;
 
     public function __construct(
-        int $user_id,
         string $email,
         string $password,
         string $name,
         string $surname
     ) {
-        $this->user_id=$user_id;
+        
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
     }
-    public function getId(): string 
+    public function setId(int $user_id){
+        $this->user_id=$user_id;
+    }
+    public function getId(): int 
     {
         return $this->user_id;
     }
