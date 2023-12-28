@@ -150,19 +150,32 @@ form > p:last-of-type { /*wyśrodkowanie napisu OR */
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    width: calc(100vw / 3); /* Równy podział na trzy kolumny */
+    width: calc(100vw / 4); /* Równy podział na trzy kolumny */
     box-sizing: border-box; /* Uwzględnienie padding w szerokości */
 }
 
-.nav-link i {
+.nav-link i, button i {
     margin: 0vh 1vw 0vh 1vw; /* Dodatkowy odstęp pomiędzy ikoną a tekstem */
 }
 
-.nav-link:hover {
+.nav-link:hover, .navbar form > button:hover {
     background-color: #ddd;
     color: black;
 }
 
+.navbar form > button{
+    width: calc(100vw / 4);;
+    height: -webkit-fill-available;
+    background: none;
+    border-radius: 0;
+    color: black;
+    position: static;
+    margin: 0;
+}
+.navbar form {
+    justify-content: center;
+    margin: 0;
+}
 .content {
     margin-top: 60px;
 }

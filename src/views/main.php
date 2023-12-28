@@ -26,12 +26,18 @@
         <i class="fa-solid fa-user fa-2xl" style="color: #d0cef4;"></i>
                 Settings
         </a>
+        <form action="/logout" method="post">
+            <button type="submit" id="logoutButton" class="nav-link">
+                <i class="fa-solid fa-right-from-bracket fa-2xl" style="color: #a6a2da;"></i>
+                Log out
+            </button>
+        </form>
     </nav>
     
 
-    <div class="notes">
+     <div class="notes">
         <img src="/public/img/notes.svg">
-    </div>
+    </div> 
     <div class="add-dream-form">
         <form>
             <input type="text" id="title" name="title" placeholder="Enter title">
@@ -44,26 +50,34 @@
     <h3 id="block-name">My last dream</h3>
 
     <div class="my-dream">
-        <div id="top">
-            <h4><?= $dreams->getTitle() ?></h4>
-            <data><?= $dreams->getDate() ?></data>
+        <?php if ($dream == null) { ?>
+            <div id="top">
+            <h4>No dreams added</h4>
         </div>
-        <p><?= $dreams->getDescription() ?></p>
-        <div id=social-icons>
-            <div>
-                <i class="fa-solid fa-heart fa-xl"></i>
-                <p><?= $dreams->getLikes() ?></p>
+        <?php } else { ?>
+            <div id="top">
+                <h4><?= $dream->getTitle() ?></h4>
+                <data><?= $dream->getDate() ?></data>
             </div>
-            <div>
-                <i class="fa-solid fa-comment fa-xl"></i>
-                <p><?= $dreams->getCommentsAmount() ?></p>
+            <p><?= $dream->getDescription() ?></p>
+            <div id="social-icons">
+                <div>
+                    <i class="fa-solid fa-heart fa-xl"></i>
+                    <p><?= $dream->getLikes() ?></p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-comment fa-xl"></i>
+                    <p><?= $dream->getCommentsAmount() ?></p>
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
+
 
     <h3 id="block-name">Friends dreams</h3>
 
-    <?php foreach($fdreams as $dream): ?>
+    <?php if($fdreams!=null){
+         foreach($fdreams as $dream): ?>
     <div class="friend-dream">
         <div id="top">
             <img src="/public/img/photo.svg">
@@ -81,12 +95,18 @@
                 </div>
                 <div>
                     <i class="fa-solid fa-comment fa-xl"></i>
-                    <p><?= $dreams->getCommentsAmount() ?></p>
+                    <p><?= $dream->getCommentsAmount() ?></p>
                 </div>
             </div>
         </div>
     </div>
-    <?php endforeach; ?>
+    <?php endforeach; } else {?>
+        <div class="friend-dream">
+            <div id="top">
+                <h4>No friends</h4>
+            </div>
+        </div>
+    <?php } ?>
     <div class="sally">
         <img src="/public/img/sally.svg">
     </div>

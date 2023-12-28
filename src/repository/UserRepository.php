@@ -19,6 +19,7 @@ class UserRepository extends Repository
         }
 
         return new User(
+            $user['user_id'],
             $user['email'],
             $user['password'],
             $user['name'],
@@ -41,18 +42,5 @@ class UserRepository extends Repository
             $user->getSurname(),
         ]);
     }
-    /*
-    public function getUserDetailsId(User $user): int
-    {
-        $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.users_details WHERE name = :name AND surname = :surname AND phone = :phone
-        ');
-        $stmt->bindParam(':name', $user->getName(), PDO::PARAM_STR);
-        $stmt->bindParam(':surname', $user->getSurname(), PDO::PARAM_STR);
-        $stmt->bindParam(':phone', $user->getPhone(), PDO::PARAM_STR);
-        $stmt->execute();
-
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data['id'];
-    }*/
+   
 }
