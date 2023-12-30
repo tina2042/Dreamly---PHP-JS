@@ -18,7 +18,7 @@
             <i class="fa-solid fa-house fa-2xl" style="color: #A6A2DA;"></i>
                 Main page
         </a>
-        <a href="#" class="nav-link">
+        <a href="calendar" class="nav-link">
             <i class="fa-solid fa-calendar-days fa-2xl" style="color: #d0cef4;"></i>
                 Calendar
         </a>
@@ -33,17 +33,35 @@
             </button>
         </form>
     </nav>
-    
+    <?php if(isset($messages)) { ?>
+
+        <div class="messages">
+            <?php
+            if(isset($messages)){
+                foreach($messages as $message) {
+                    echo $message;
+                }
+            }
+            ?>
+        </div>
+    <?php } ?>
 
      <div class="notes">
         <img src="/public/img/notes.svg">
     </div> 
     <div class="add-dream-form">
-        <form>
+        <form action="/adding_dream" method="POST">
             <input type="text" id="title" name="title" placeholder="Enter title">
             <textarea id="content" name="content" placeholder="Write your dream here"></textarea>
-                
-            <button type="submit">Add Dream</button>
+            <div id="buttons">
+                <div class="dropdown-list">
+                    <select name="privacy" id="privacy">
+                        <option value="Public">Public</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit">Add Dream</button>
+            </div>
         </form>
     </div>
     

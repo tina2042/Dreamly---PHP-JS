@@ -4,11 +4,12 @@ class Dream {
     private User $user;
     private String $title;
     private String $description;
-    private String $date;
+    private DateTime $date;
     private int $likes;
     private int $commentAmount;
+    private string $privacy;
 
-    public function __construct(User $user, String $title, String $description, String $date, int $likes, int $commentAmount) {
+    public function __construct(User $user, String $title, String $description, DateTime $date, int $likes, int $commentAmount) {
         $this->user = $user;
         $this->title = $title;
         $this->description = $description;
@@ -17,11 +18,19 @@ class Dream {
         $this->commentAmount = $commentAmount;
     }
 
-    public function getUserName(){
+    public function getUserName():String{
         return $this->user->getName();
     }
+    public function setPrivacy(String $privacy)
+    {
+        $this->privacy=$privacy;
+    }
+    public function getPrivacy(): String
+    {
+        return$this->privacy;
+    }
 
-    public function getTitle() {
+    public function getTitle() :String {
         return $this->title;
     }
 
@@ -29,7 +38,7 @@ class Dream {
         $this->title = $title;
     }
 
-    public function getDescription() {
+    public function getDescription(): String {
         return $this->description;
     }
 
@@ -37,37 +46,19 @@ class Dream {
         $this->description = $description;
     }
 
-    public function getDate() {
-        return $this->date;
+    public function getDate() :String {
+        return $this->date->format("Y-m-d");
     }
 
     public function setDate($date) {
         $this->date = $date;
     }
 
-    public function getLikes() {
+    public function getLikes() :int{
         return $this->likes;
     }
-    public function getCommentsAmount() {
+    public function getCommentsAmount() : int{
         return $this->commentAmount;
     }
 
-
-    // Additional methods for dream management can be added as needed
-
-    public function save() {
-        // Logic to save the dream to a database or any other storage mechanism
-        // You can use database queries or an ORM (Object-Relational Mapping) library here
-        // For simplicity, we'll just print a message in this example
-        echo "Dream saved successfully!\n";
-    }
-
-    public function delete() {
-        // Logic to delete the dream from the storage
-        // Again, you might want to use database queries or an ORM library
-        // For simplicity, we'll just print a message in this example
-        echo "Dream deleted successfully!\n";
-    }
-
-    // You can add more methods for dream-related functionalities as per your application requirements
 }

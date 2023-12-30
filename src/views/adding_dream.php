@@ -27,21 +27,32 @@
                 Settings
         </a>
     </nav>
-    
 
+<?php if(isset($messages)) { ?>
+
+    <div class="messages">
+        <?php
+        if(isset($messages)){
+            foreach($messages as $message) {
+                echo $message;
+            }
+        }
+        ?>
+    </div>
+<?php } ?>
     <div class="add-dream-form">
-        <form>
+        <form action="/adding_dream" method="POST">
             <input type="text" id="title" name="title" placeholder="Enter title">
             <textarea id="content" name="content" placeholder="Write your dream here"></textarea>
             <div id="buttons">
                 <div class="dropdown-list">
-                    <select name="" id="">
+                    <select name="privacy" id="privacy">
                         <option value="Public">Public</option>
                         <option value="Private">Private</option>
                     </select>
                 </div>
                 <a href='main'><button id="cancel" type="button">Cancel</button></a>
-                <button type="submit">Add Dream</button>
+                <button type="submit" class="submit">Add Dream</button>
             </div>
         </form>
     </div>

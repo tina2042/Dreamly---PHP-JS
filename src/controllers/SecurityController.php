@@ -17,7 +17,6 @@ class SecurityController extends AppController {
         
         session_destroy();
 
-        // Przekieruj na stronę dashboard lub inną
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");
         exit();

@@ -1,5 +1,4 @@
 <?php
-
 require_once "/app/autoloader.php";
 
 class Routing{
@@ -14,6 +13,8 @@ class Routing{
 
   public static function run ($url) {
     $action = explode("/", $url)[0];
+    $action = explode('?', $action)[0];
+
     if (!array_key_exists($action, self::$routes)) {
         $errorController = new ErrorController();
         $errorController->showErrorPage(404); 

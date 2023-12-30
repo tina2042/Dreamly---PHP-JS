@@ -7,9 +7,14 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once "/app/autoloader.php";
 
 class DefaultController extends AppController {
+    private $dreamRepository;
 
-    
-    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->dreamRepository = new DreamRepository;
+
+    }
     public function dashboard()
     {
         $this->render('dashboard');
@@ -25,20 +30,21 @@ class DefaultController extends AppController {
             header("Location: {$url}/dashboard");
             exit();
         }
-        $dreams = new DreamRepository;
-        $this->render('main', ["dream"=>$dreams->getMyLastDream(), "fdreams"=>$dreams->getFriendDreams()]);//po przecinku kolejne zmienne
+
+        $this->render('main', ["dream"=>$this->dreamRepository->getMyLastDream(), "fdreams"=>$this->dreamRepository->getFriendDreams()]);//po przecinku kolejne zmienne
         
     }
-
-    public function adding_dream(){
-        // Sprawdź, czy użytkownik jest zalogowany
-        if (!isset($_SESSION['user_id'])) {
+    public function calendar(){
+         // Sprawdź, czy użytkownik jest zalogowany
+         if (!isset($_SESSION['user_id'])) {
             // Przekieruj na stronę dashboard lub inną
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/dashboard");
             exit();
         }
-        $this->render('adding_dream');
+
+        $this->render('calendar', ["dreams"=>$this->dreamRepository->getMyDreams()]);//po przecinku kolejne zmienne
+        
     }
     
 }

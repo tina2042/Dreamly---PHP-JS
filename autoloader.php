@@ -8,7 +8,8 @@ spl_autoload_register(function ($class) {
         __DIR__ . '/src/controllers/',
         __DIR__.'/src/models/',
         __DIR__.'/',
-        __DIR__.'/src/repository/'
+        __DIR__.'/src/repository/',
+        __DIR__.'src/views'
         
     ];
 

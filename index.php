@@ -1,5 +1,5 @@
 <?php
-require_once "/app/autoloader.php";
+require_once "autoloader.php";
 
 $path = trim($_SERVER['REQUEST_URI'], '/');
 
@@ -10,8 +10,8 @@ Routing::post('logout','SecurityController');
 Routing::post('register', 'SecurityController');
 Routing::get('dashboard', 'DefaultController');
 Routing::get('main', 'DefaultController');
-Routing::get('adding_dream', 'DefaultController');
+Routing::post('adding_dream', 'DreamController');
+Routing::get('calendar', 'DefaultController');
 
 Routing::run($path);
 
-?>

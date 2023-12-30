@@ -55,7 +55,7 @@ class DreamRepository extends Repository
                 $user,
                 $dream['title'],
                 $dream['content'],
-                $dream['date'],
+                DateTime::createFromFormat('Y-m-d', $dream['date']),
                 $dream['likes'],
                 $dream['commentamount']
             );
@@ -69,8 +69,6 @@ class DreamRepository extends Repository
     
     public function getMyLastDream()
     {
-        
-
        $this_user = $_SESSION['user_id'];
 
         $stmt = $this->database->connect()->prepare('
@@ -114,7 +112,7 @@ class DreamRepository extends Repository
                 $user,
                 $dream['title'],
                 $dream['content'],
-                $dream['date'],
+                DateTime::createFromFormat("Y-m-d", $dream['date']),
                 $dream['likes'],
                 $dream['commentamount']
             );
@@ -125,10 +123,8 @@ class DreamRepository extends Repository
         return $result;
     }
 
-
     public function getFriendDreams(): array{
 
-        
         $result = [];
 
         $this_user = $_SESSION['user_id'];
@@ -175,7 +171,7 @@ class DreamRepository extends Repository
                     $user,
                     $dream['title'],
                     $dream['content'],
-                    $dream['date'],
+                    DateTime::createFromFormat('Y-m-d', $dream['date']),
                     $dream['likes'],
                     $dream['commentamount']
                 );
@@ -185,5 +181,24 @@ class DreamRepository extends Repository
         }
 
         return $result;
+    }
+
+    public function addDream(Dream $dream): void
+    {
+        $date = new DateTime();
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO dreams (user_id, title, dream_content, date, privacy)
+            VALUES (?, ?, ?, ?, ?)
+        ');
+
+        $this_user = $_SESSION['user_id'];
+
+        $stmt->execute([
+            $this_user,
+            $dream->getTitle(),
+            $dream->getDescription(),
+            $date->format('Y-m-d'),
+            $dream->getPrivacy()
+        ]);
     }
 }

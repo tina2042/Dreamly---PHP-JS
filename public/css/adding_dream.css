@@ -66,29 +66,9 @@ form > button{
 button:hover{
     background: #BAA0E5;
 }
-#buttons{
-    display: flex;
-    margin: 0 5vw;
-}
 
-.dropdown-list{
-    border-radius: 35.765px;
-    background: #C9B4EC;
-    width: 30vw;
-    height: 5vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-}
-.dropdown-list > select{
-    background: #C9B4EC;
-    border-color: #C9B4EC;
-    color:white;
-    font-family: Poppins;
-    font-size: 1em;
 
-}
 #buttons >button, #buttons> a> button{
     border-radius: 35.765px;
     margin-left:5vw;

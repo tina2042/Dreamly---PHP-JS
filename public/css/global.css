@@ -11,9 +11,9 @@ body {
 }
 .notes img, .sally img {
     min-width: 100px;
-    max-width: 500px;
+    max-width: 400px;
     height: auto;
-    z-index: 1;
+    z-index: -10;
 }
 .notes img {
     width: 30vw;
@@ -90,7 +90,7 @@ form > p:last-of-type { /*wyśrodkowanie napisu OR */
 }
 
 .submit{
-    margin-top: 30px;
+
     box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
 }
 
@@ -196,3 +196,27 @@ form > p:last-of-type { /*wyśrodkowanie napisu OR */
     cursor: pointer;
 
   }
+.dropdown-list{
+    border-radius: 35.765px;
+    background: #C9B4EC;
+    width: 30%;
+    height: calc(100vh * (50 / 900));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+
+}
+.dropdown-list > select{
+    background: #C9B4EC;
+    border-color: #C9B4EC;
+    color:white;
+    font-family: Poppins;
+    font-size: 1em;
+
+}
+#buttons{
+    display: flex;
+    margin: 0 5vw;
+    justify-content: flex-end;
+}

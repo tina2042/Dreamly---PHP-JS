@@ -1,11 +1,11 @@
 <?php
 class User{
-    private $user_id;
-    private $email;
-    private $password;
-    private $name;
-    private $surname;
-    private $photo;
+    private int $user_id;
+    private String $email;
+    private String $password;
+    private String $name;
+    private String $surname;
+    private String $photo;
 
     public function __construct(
         string $email,
@@ -19,7 +19,7 @@ class User{
         $this->name = $name;
         $this->surname = $surname;
     }
-    public function setId(int $user_id){
+    public function setId(int $user_id):void{
         $this->user_id=$user_id;
     }
     public function getId(): int 
@@ -31,7 +31,7 @@ class User{
         return $this->email;
     }
 
-    public function getPassword()
+    public function getPassword():String
     {
         return $this->password;
     }
@@ -56,11 +56,11 @@ class User{
         $this->surname = $surname;
     }
     
-    public function getPhoto() {
+    public function getPhoto() :string{
         return $this->photo;
     }
 
-    public function setPhoto($photo) {
+    public function setPhoto($photo):void {
          $this->photo=$photo;
     }
 

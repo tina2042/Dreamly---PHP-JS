@@ -7,6 +7,7 @@
     margin-left: 3.5vw;
 }
 .top-section > .Welcome{
+    display:block;
     font-size: 6vh;
     font-style: normal;
     font-weight: 700;
@@ -15,6 +16,7 @@
 }
 
 .Welcome >span{
+    display: block;
     color: #3B5775;
     font-family: 'Pacifico';
     font-weight: 400;
