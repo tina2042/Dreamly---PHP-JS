@@ -19,13 +19,12 @@ Clone the repository:
 
 ``` bash 
 
-```bash
 git clone github.com/tina2042/Dreamly
 cd Dreamly
 docker-compose build
 docker-compose up
 ```
-To open aplication open localhost//8080:80
+To open aplication go to [localhost//8080:80](http://localhost:8080/dashboard)
 
 
 Follow the instructions in the documentation to set up and configure Dreamly on your local environment. Start sharing your dreams and connecting with others in the Dreamly community!
