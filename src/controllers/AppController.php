@@ -2,22 +2,23 @@
 
 class AppController {
 
-    private $request;
+    //private $request;
 
-    public function __construct()
-    {
-        $this->request = $_SERVER['REQUEST_METHOD'];
-    }
+    // public function __construct()
+    // {
+    //     $this->request = $_SERVER['REQUEST_METHOD'];
+    // }
     //dodac bez tego i w isGet napisac $_Server['request_method']==='get' i zastosowac singleton, zmienna 
     //server przechpwuje wiele rzeczy tak naprawde
     protected function isGet(): bool
     {
-        return $this->request === 'GET';
+        return $_SERVER['REQUEST_METHOD'] === 'GET';
     }
 
     protected function isPost(): bool
     {
-        return $this->request === 'POST';
+        
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
 
     protected function render(string $template = null, array $variables = [])

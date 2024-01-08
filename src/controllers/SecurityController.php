@@ -1,6 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+    $_SESSION['last_activity'] = time();
 }
 require_once "/app/autoloader.php";
 
@@ -10,7 +11,7 @@ class SecurityController extends AppController {
 
     public function __construct()
     {
-        parent::__construct();
+        //parent::__construct();
         $this->userRepository = new UserRepository();
     }
     public function logout(){
@@ -46,6 +47,7 @@ class SecurityController extends AppController {
         
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
+            $_SESSION['last_activity'] = time();
         }
 
         // Set session variables

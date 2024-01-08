@@ -11,7 +11,7 @@ class DreamController extends AppController {
 
     public function __construct()
     {
-        parent::__construct();
+        //parent::__construct();
         $this->dreamRepository = new DreamRepository();
         $this->userRepository = new UserRepository();
     }

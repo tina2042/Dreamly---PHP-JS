@@ -1,5 +1,5 @@
 <?php
-require_once "/app/autoloader.php";
+require_once "autoloader.php";
 
 class Routing{
     public static $routes;
