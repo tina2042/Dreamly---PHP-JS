@@ -9,7 +9,6 @@ class DreamController extends AppController {
 
     public function __construct()
     {
-        //parent::__construct();
         $this->dreamRepository = new DreamRepository();
         $this->userRepository = new UserRepository();
     }
@@ -42,8 +41,7 @@ class DreamController extends AppController {
         }
         $this->dreamRepository->addDream($dream);
         
-        //return $this->render('main', ['messages'=> ['Your dream has been succesufully added!'], "dream"=>$this->dreamRepository->getMyLastDream(), "fdreams"=>$this->dreamRepository->getFriendDreams()]);
-        
+
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/main?d=1");
         exit();

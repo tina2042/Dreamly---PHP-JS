@@ -14,6 +14,7 @@ class DreamRepository extends Repository
 
         $stmt = $this->database->connect()->prepare('
             SELECT
+                dreams.dream_id as dream_id,
                 dreams.title AS title,
                 dreams.dream_content AS content,
                 dreams.date AS date,
@@ -29,7 +30,7 @@ class DreamRepository extends Repository
             LEFT JOIN comments ON dreams.dream_id = comments.dream_id
             LEFT JOIN likes ON dreams.dream_id = likes.dream_id
             WHERE dreams.user_id = :this_user
-            GROUP BY dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
+            GROUP BY dreams.dream_id, dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
             ORDER BY dreams.date DESC
             LIMIT 1;
         ');
@@ -42,7 +43,7 @@ class DreamRepository extends Repository
 
          foreach ($dreams as $dream) {
             if ($dream !== false) {
-                $user=new User(
+                $user=User::getInstance(
                     $dream['email'],
                     $dream['password'],
                     $dream['name'],
@@ -50,6 +51,7 @@ class DreamRepository extends Repository
                 );
             $user->setId($dream['user_id']);
             $result[] = new Dream(
+                $dream['dream_id'],
                 $user,
                 $dream['title'],
                 $dream['content'],
@@ -71,6 +73,7 @@ class DreamRepository extends Repository
 
         $stmt = $this->database->connect()->prepare('
             SELECT
+                dreams.dream_id as dream_id,
                 dreams.title AS title,
                 dreams.dream_content AS content,
                 dreams.date AS date,
@@ -86,7 +89,7 @@ class DreamRepository extends Repository
             LEFT JOIN comments ON dreams.dream_id = comments.dream_id
             LEFT JOIN likes ON dreams.dream_id = likes.dream_id
             WHERE dreams.user_id = :this_user
-            GROUP BY dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
+            GROUP BY dreams.dream_id, dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
             ORDER BY dreams.date DESC
             LIMIT 1;
         ');
@@ -98,7 +101,7 @@ class DreamRepository extends Repository
         $dream = $stmt->fetch(PDO::FETCH_ASSOC);
 
        if ($dream !== false) {
-            $user=new User(
+            $user=User::getInstance(
                 $dream['email'],
                 $dream['password'],
                 $dream['name'],
@@ -107,6 +110,7 @@ class DreamRepository extends Repository
         $user->setId($dream['user_id']);
 
             $result = new Dream(
+                $dream['dream_id'],
                 $user,
                 $dream['title'],
                 $dream['content'],
@@ -129,6 +133,7 @@ class DreamRepository extends Repository
 
         $stmt = $this->database->connect()->prepare('
             SELECT
+                dreams.dream_id as dream_id,
                 dreams.title AS title,
                 dreams.dream_content AS content,
                 dreams.date AS date,
@@ -145,7 +150,7 @@ class DreamRepository extends Repository
             LEFT JOIN likes ON dreams.dream_id = likes.dream_id
             JOIN friends ON dreams.user_id = friends.friend_id OR dreams.user_id = friends.user_id
             WHERE (friends.user_id = :this_user OR friends.friend_id = :this_user) AND users.user_id != :this_user
-            GROUP BY dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
+            GROUP BY dreams.dream_id, dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
             ORDER BY dreams.date DESC;
     
         ');
@@ -158,7 +163,7 @@ class DreamRepository extends Repository
 
         foreach ($dreams as $dream) {
             if ($dream !== false) {
-                $user=new User(
+                $user=User::getInstance(
                         $dream['email'],
                         $dream['password'],
                         $dream['name'],
@@ -166,6 +171,7 @@ class DreamRepository extends Repository
                 );
                 $user->setId($dream['user_id']);
                 $result[] = new Dream(
+                    $dream['dream_id'],
                     $user,
                     $dream['title'],
                     $dream['content'],
@@ -189,7 +195,7 @@ class DreamRepository extends Repository
             VALUES (?, ?, ?, ?, ?)
         ');
 
-        $this_user = $_SESSION['user_id'];
+        $this_user = $_COOKIE['user_id'];
 
         $stmt->execute([
             $this_user,

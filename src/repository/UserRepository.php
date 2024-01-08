@@ -18,7 +18,7 @@ class UserRepository extends Repository
             return null;
         }
 
-        $tuser=new User($user['email'],
+        $tuser=User::getInstance($user['email'],
         $user['password'],
         $user['name'],
         $user['surname']);
@@ -48,9 +48,9 @@ class UserRepository extends Repository
         SET password = :password
         WHERE user_id = :user_id
     ');
-
+    $user_id = $user->getId();
     $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-    $stmt->bindParam(':user_id', $user->getId(), PDO::PARAM_INT);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 
     $stmt->execute();
 

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+    <title>Home</title>
     <script src="https://kit.fontawesome.com/a99d7ad425.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/global.css">
     <link rel="stylesheet" href="/public/css/main.css">
+    <script src="/public/js/script.js" defer></script>
 </head>
 <body>
 
@@ -83,10 +84,21 @@
                     <i class="fa-solid fa-heart fa-xl"></i>
                     <p><?= $dream->getLikes() ?></p>
                 </div>
-                <div>
+                <div class="comment_icon">
                     <i class="fa-solid fa-comment fa-xl"></i>
                     <p><?= $dream->getCommentsAmount() ?></p>
                 </div>
+            </div>
+            <div class="dream-comments">
+                <?php $commentRepository= new CommentRepository();
+                 $comments = $commentRepository->getDreamComments($dream->getDreamId());
+                 if (!empty($comments)) {
+                foreach($comments as $comment): ?>
+                <div class="comment">
+                    <p class="name"><?= $commentRepository->getCommentOwner($comment->getCommentId())->getName(); ?></p>
+                    <p class="comment-text"><?= $comment->getCommentContent() ?></p>
+                </div>
+                <?php endforeach; }?>
             </div>
         <?php } ?>
     </div>
@@ -116,6 +128,10 @@
                     <p><?= $dream->getCommentsAmount() ?></p>
                 </div>
             </div>
+        </div>
+        <div class="dream-comments">
+            <?= $comments = $commentRepository->getDreamComments($dream->getUserId()) ?>
+            <?= var_dump($commentRepository->getDreamComments($dream->getUserId())) ?>
         </div>
     </div>
     <?php endforeach; } else {?>

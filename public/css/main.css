@@ -153,7 +153,7 @@ margin-top: 0.5em;
     margin-right: 5vw;
     margin-bottom: 2em;
     width: 74vw;
- 
+    position: relative;
 }
 .friend-dream > #top{
     display: flex;
@@ -182,7 +182,38 @@ margin-top: 0.5em;
     margin-top: -3vh;
     width: 61vw;
 }
+.dream-comments {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1;
+}
 
+.dream-comments.show-comments {
+    display: contents;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-text {
+    margin: 0;
+}
 .sally img{
     width:30vw;
     position: fixed;

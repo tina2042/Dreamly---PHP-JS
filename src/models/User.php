@@ -1,67 +1,76 @@
 <?php
-class User{
-    private int $user_id;
-    private String $email;
-    private String $password;
-    private String $name;
-    private String $surname;
-    private String $photo;
+class User {
+private static ?User $instance = null; // Static instance variable to hold the singleton instance
 
-    public function __construct(
-        string $email,
-        string $password,
-        string $name,
-        string $surname
-    ) {
-        
-        $this->email = $email;
-        $this->password = $password;
-        $this->name = $name;
-        $this->surname = $surname;
-    }
-    public function setId(int $user_id):void{
-        $this->user_id=$user_id;
-    }
-    public function getId(): int 
-    {
-        return $this->user_id;
-    }
-    public function getEmail(): string 
-    {
-        return $this->email;
-    }
+private int $user_id;
+private string $email;
+private string $password;
+private string $name;
+private string $surname;
+private string $photo;
 
-    public function getPassword():String
-    {
-        return $this->password;
-    }
+private function __construct(
+string $email,
+string $password,
+string $name,
+string $surname
+) {
+$this->email = $email;
+$this->password = $password;
+$this->name = $name;
+$this->surname = $surname;
+}
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
+public static function getInstance(
+string $email,
+string $password,
+string $name,
+string $surname
+): User {
+if (self::$instance === null) {
+self::$instance = new User($email, $password, $name, $surname);
+}
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
+return self::$instance;
+}
 
-    public function getSurname(): string
-    {
-        return $this->surname;
-    }
+public function setId(int $user_id): void {
+$this->user_id = $user_id;
+}
 
-    public function setSurname(string $surname): void
-    {
-        $this->surname = $surname;
-    }
-    
-    public function getPhoto() :string{
-        return $this->photo;
-    }
+public function getId(): int {
+return $this->user_id;
+}
 
-    public function setPhoto($photo):void {
-         $this->photo=$photo;
-    }
+public function getEmail(): string {
+return $this->email;
+}
 
+public function getPassword(): string {
+return $this->password;
+}
+
+public function getName(): string {
+return $this->name;
+}
+
+public function setName(string $name): void {
+$this->name = $name;
+}
+
+public function getSurname(): string {
+return $this->surname;
+}
+
+public function setSurname(string $surname): void {
+$this->surname = $surname;
+}
+
+public function getPhoto(): string {
+return $this->photo;
+}
+
+public function setPhoto($photo): void {
+$this->photo = $photo;
+}
 }

@@ -1,6 +1,7 @@
 <?php
 
 class Dream {
+    private int $dreamId;
     private User $user;
     private String $title;
     private String $description;
@@ -9,7 +10,8 @@ class Dream {
     private int $commentAmount;
     private string $privacy;
 
-    public function __construct(User $user, String $title, String $description, DateTime $date, int $likes, int $commentAmount) {
+    public function __construct(int $dreamId, User $user, String $title, String $description, DateTime $date, int $likes, int $commentAmount) {
+        $this->dreamId=$dreamId;
         $this->user = $user;
         $this->title = $title;
         $this->description = $description;
@@ -17,6 +19,7 @@ class Dream {
         $this->likes = $likes;
         $this->commentAmount = $commentAmount;
     }
+
 
     public function getUserName():String{
         return $this->user->getName();
@@ -59,6 +62,11 @@ class Dream {
     }
     public function getCommentsAmount() : int{
         return $this->commentAmount;
+    }
+
+    public function getDreamId(): int
+    {
+        return $this->dreamId;
     }
 
 }

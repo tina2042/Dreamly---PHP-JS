@@ -5,10 +5,12 @@ require_once "/app/autoloader.php";
 class DefaultController extends AppController {
     private $dreamRepository;
 
+
     public function __construct()
     {
         //parent::__construct();
         $this->dreamRepository = new DreamRepository;
+
 
     }
     public function dashboard()
@@ -31,7 +33,7 @@ class DefaultController extends AppController {
         }
 
 
-        $this->render('main', ["dream"=>$this->dreamRepository->getMyLastDream(), "fdreams"=>$this->dreamRepository->getFriendDreams()]);//po przecinku kolejne zmienne
+        $this->render('main', ["dream"=>$this->dreamRepository->getMyLastDream(), "fdreams"=>$this->dreamRepository->getFriendDreams()]);
         
     }
     public function calendar(){
