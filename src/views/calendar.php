@@ -48,6 +48,6 @@
         </div>
     <?php } ?>
     <div id="calendar"></div>
-    <script src="/public/js/script.js"></script>
+    <script src="/public/js/calendar.js"></script>
 </body>
 </html>

@@ -1,8 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-    $_SESSION['last_activity'] = time();
-}
+
 require_once "/app/autoloader.php";
 
 class SecurityController extends AppController {
@@ -11,12 +8,12 @@ class SecurityController extends AppController {
 
     public function __construct()
     {
-        //parent::__construct();
         $this->userRepository = new UserRepository();
     }
     public function logout(){
         
-        session_destroy();
+
+        setcookie('user_id', '', time() - 3600, '/');
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");
@@ -44,15 +41,8 @@ class SecurityController extends AppController {
         if (!password_verify($password, $user->getPassword())) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
-        
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-            $_SESSION['last_activity'] = time();
-        }
 
-        // Set session variables
-        $_SESSION['user_id'] = $user->getId();
-        $_SESSION['user_email'] = $user->getEmail();
+        setcookie('user_id', $user->getId(), time() + 600, '/'); // Ważność 10 min (600 sekund)
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/main");

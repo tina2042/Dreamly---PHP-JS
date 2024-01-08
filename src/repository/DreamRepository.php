@@ -1,7 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+
 
 require_once "/app/autoloader.php";
 
@@ -12,7 +10,7 @@ class DreamRepository extends Repository
         
         $result = [];
 
-        $this_user = $_SESSION['user_id'];
+        $this_user = $_COOKIE['user_id'];
 
         $stmt = $this->database->connect()->prepare('
             SELECT
@@ -69,7 +67,7 @@ class DreamRepository extends Repository
     
     public function getMyLastDream()
     {
-       $this_user = $_SESSION['user_id'];
+       $this_user = $_COOKIE['user_id'];
 
         $stmt = $this->database->connect()->prepare('
             SELECT
@@ -127,7 +125,7 @@ class DreamRepository extends Repository
 
         $result = [];
 
-        $this_user = $_SESSION['user_id'];
+        $this_user = $_COOKIE['user_id'];
 
         $stmt = $this->database->connect()->prepare('
             SELECT

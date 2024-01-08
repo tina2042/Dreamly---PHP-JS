@@ -1,7 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-session_start();
-}
+
 
 require_once "/app/autoloader.php";
 
@@ -16,11 +14,13 @@ class DreamController extends AppController {
         $this->userRepository = new UserRepository();
     }
     public function adding_dream(){
-        if (!isset($_SESSION['user_id'])) {
+
+        if (!isset($_COOKIE['user_id'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/dashboard");
             exit();
         }
+
         if (!$this->isPost()) {
             return $this->render('adding_dream');
 
@@ -50,7 +50,7 @@ class DreamController extends AppController {
 
     }
     public function view_dream(){
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_COOKIE['user_id'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/dashboard");
             exit();
