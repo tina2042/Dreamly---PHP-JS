@@ -130,8 +130,15 @@
             </div>
         </div>
         <div class="dream-comments">
-            <?= $comments = $commentRepository->getDreamComments($dream->getUserId()) ?>
-            <?= var_dump($commentRepository->getDreamComments($dream->getUserId())) ?>
+            <?php $commentRepository= new CommentRepository();
+            $comments = $commentRepository->getDreamComments($dream->getDreamId());
+            if (!empty($comments)) {
+                foreach($comments as $comment): ?>
+                    <div class="comment">
+                        <p class="name"><?= $commentRepository->getCommentOwner($comment->getCommentId())->getName(); ?></p>
+                        <p class="comment-text"><?= $comment->getCommentContent() ?></p>
+                    </div>
+                <?php endforeach; }?>
         </div>
     </div>
     <?php endforeach; } else {?>

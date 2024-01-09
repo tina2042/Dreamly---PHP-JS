@@ -17,11 +17,11 @@
 <body>
     <nav class="navbar">
         <a href="main" class="nav-link">
-            <i class="fa-solid fa-house fa-2xl" style="color: #A6A2DA;"></i>
+            <i class="fa-solid fa-house fa-2xl" style="color: #d0cef4;"></i>
             Main page
         </a>
         <a href="calendar" class="nav-link">
-            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #d0cef4;"></i>
+            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #A6A2DA;"></i>
             Calendar
         </a>
         <a href="#" class="nav-link">
