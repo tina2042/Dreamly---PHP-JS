@@ -42,8 +42,8 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
-        setcookie('user_id', $user->getId(), time() + 600, '/'); // Ważność 10 min (600 sekund)
-
+        setcookie('user_id', $user->getId(), time() + 3600, '/'); // Ważność 60 min (3600 sekund)
+        setcookie('user_email', $user->getEmail(), time()+3600, '/');
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/main");
     }
@@ -67,7 +67,7 @@ class SecurityController extends AppController {
         
         
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        $user = new User($email, $passwordHash, $name, $surname);      
+        $user = User::getInstance($email, $passwordHash, $name, $surname);
         $this->userRepository->addUser($user);
 
         return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);

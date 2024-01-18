@@ -1,76 +1,77 @@
 <?php
-class User {
-private static ?User $instance = null; // Static instance variable to hold the singleton instance
 
-private int $user_id;
-private string $email;
-private string $password;
-private string $name;
-private string $surname;
-private string $photo;
+class User
+{
+    private static ?User $instance = null; // Static instance variable to hold the singleton instance
 
-private function __construct(
-string $email,
-string $password,
-string $name,
-string $surname
-) {
-$this->email = $email;
-$this->password = $password;
-$this->name = $name;
-$this->surname = $surname;
-}
+    private int $user_id;
+    private string $email;
+    private string $password;
+    private string $name;
+    private string $surname;
+    private string $photo;
 
-public static function getInstance(
-string $email,
-string $password,
-string $name,
-string $surname
-): User {
-if (self::$instance === null) {
-self::$instance = new User($email, $password, $name, $surname);
-}
+    private function __construct(
+        string $email,
+        string $password,
+        string $name,
+        string $surname
+    )
+    {
+        $this->email = $email;
+        $this->password = $password;
+        $this->name = $name;
+        $this->surname = $surname;
+    }
 
-return self::$instance;
-}
+    public static function getInstance(
+        string $email,
+        string $password,
+        string $name,
+        string $surname
+    ): User
+    {
+        if (self::$instance === null) {
+            self::$instance = new User($email, $password, $name, $surname);
+        }
 
-public function setId(int $user_id): void {
-$this->user_id = $user_id;
-}
+        return self::$instance;
+    }
 
-public function getId(): int {
-return $this->user_id;
-}
+    public function setId(int $user_id): void
+    {
+        $this->user_id = $user_id;
+    }
 
-public function getEmail(): string {
-return $this->email;
-}
+    public function getId(): int
+    {
+        return $this->user_id;
+    }
 
-public function getPassword(): string {
-return $this->password;
-}
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
 
-public function getName(): string {
-return $this->name;
-}
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
 
-public function setName(string $name): void {
-$this->name = $name;
-}
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-public function getSurname(): string {
-return $this->surname;
-}
 
-public function setSurname(string $surname): void {
-$this->surname = $surname;
-}
+    public function getSurname(): string
+    {
+        return $this->surname;
+    }
 
-public function getPhoto(): string {
-return $this->photo;
-}
 
-public function setPhoto($photo): void {
-$this->photo = $photo;
-}
+    public function setPhoto($photo): void
+    {
+        $this->photo = $photo;
+    }
 }

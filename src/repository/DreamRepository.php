@@ -4,61 +4,37 @@
 require_once "/app/autoloader.php";
 
 class DreamRepository extends Repository
-{    
+{
     public function getMyDreams(): array
     {
-        
+
         $result = [];
 
         $this_user = $_COOKIE['user_id'];
 
         $stmt = $this->database->connect()->prepare('
-            SELECT
-                dreams.dream_id as dream_id,
-                dreams.title AS title,
-                dreams.dream_content AS content,
-                dreams.date AS date,
-                COUNT(likes.like_id) AS likes,
-                COUNT(comments.comment_id) AS commentamount,
-                users.user_id AS user_id,
-                users.email AS email,
-                users.password AS password,
-                users.name AS name,
-                users.surname AS surname
-            FROM dreams
-            JOIN users ON dreams.user_id = users.user_id
-            LEFT JOIN comments ON dreams.dream_id = comments.dream_id
-            LEFT JOIN likes ON dreams.dream_id = likes.dream_id
-            WHERE dreams.user_id = :this_user
-            GROUP BY dreams.dream_id, dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
-            ORDER BY dreams.date DESC
-            LIMIT 1;
+            SELECT *
+            FROM userdreamview
+            WHERE user_id = :this_user;
         ');
 
         $stmt->bindParam(':this_user', $this_user, PDO::PARAM_INT);
-       
+
         $stmt->execute();
 
-         $dreams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $dreams = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-         foreach ($dreams as $dream) {
+        foreach ($dreams as $dream) {
             if ($dream !== false) {
-                $user=User::getInstance(
-                    $dream['email'],
-                    $dream['password'],
-                    $dream['name'],
-                    $dream['surname']
+                $result[] = new Dream(
+                    $dream['title'],
+                    $dream['content'],
+                    DateTime::createFromFormat('Y-m-d', $dream['date']),
+                    $dream['likes'],
+                    $dream['commentamount']
                 );
-            $user->setId($dream['user_id']);
-            $result[] = new Dream(
-                $dream['dream_id'],
-                $user,
-                $dream['title'],
-                $dream['content'],
-                DateTime::createFromFormat('Y-m-d', $dream['date']),
-                $dream['likes'],
-                $dream['commentamount']
-            );
+                end($result)->setDreamId($dream['dream_id']);
+
             } else {
                 $result[] = null;
             }
@@ -66,66 +42,16 @@ class DreamRepository extends Repository
 
         return $result;
     }
-    
+
     public function getMyLastDream()
     {
-       $this_user = $_COOKIE['user_id'];
-
-        $stmt = $this->database->connect()->prepare('
-            SELECT
-                dreams.dream_id as dream_id,
-                dreams.title AS title,
-                dreams.dream_content AS content,
-                dreams.date AS date,
-                COUNT(likes.like_id) AS likes,
-                COUNT(comments.comment_id) AS commentamount,
-                users.user_id AS user_id,
-                users.email AS email,
-                users.password AS password,
-                users.name AS name,
-                users.surname AS surname
-            FROM dreams
-            JOIN users ON dreams.user_id = users.user_id
-            LEFT JOIN comments ON dreams.dream_id = comments.dream_id
-            LEFT JOIN likes ON dreams.dream_id = likes.dream_id
-            WHERE dreams.user_id = :this_user
-            GROUP BY dreams.dream_id, dreams.title, dreams.dream_content, dreams.date, users.name, users.user_id
-            ORDER BY dreams.date DESC
-            LIMIT 1;
-        ');
-
-        $stmt->bindParam(':this_user', $this_user, PDO::PARAM_INT);
-       
-        $stmt->execute();
-
-        $dream = $stmt->fetch(PDO::FETCH_ASSOC);
-
-       if ($dream !== false) {
-            $user=User::getInstance(
-                $dream['email'],
-                $dream['password'],
-                $dream['name'],
-                $dream['surname']
-            );
-        $user->setId($dream['user_id']);
-
-            $result = new Dream(
-                $dream['dream_id'],
-                $user,
-                $dream['title'],
-                $dream['content'],
-                DateTime::createFromFormat("Y-m-d", $dream['date']),
-                $dream['likes'],
-                $dream['commentamount']
-            );
-        } else {
-             $result = null;
-        }
+        $result = $this->getMyDreams()[0];
 
         return $result;
     }
 
-    public function getFriendDreams(): array{
+    public function getFriendDreams(): array
+    {
 
         $result = [];
 
@@ -141,9 +67,8 @@ class DreamRepository extends Repository
                 COUNT(comments.comment_id) AS commentAmount,
                 users.user_id AS user_id,
                 users.email AS email,
-                users.password AS password,
-                users.name AS name,
-                users.surname AS surname
+                users.password AS password
+              
             FROM dreams
             JOIN users ON dreams.user_id = users.user_id
             LEFT JOIN comments ON dreams.dream_id = comments.dream_id
@@ -156,29 +81,23 @@ class DreamRepository extends Repository
         ');
 
         $stmt->bindParam(':this_user', $this_user, PDO::PARAM_INT);
-       
+
         $stmt->execute();
 
         $dreams = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($dreams as $dream) {
             if ($dream !== false) {
-                $user=User::getInstance(
-                        $dream['email'],
-                        $dream['password'],
-                        $dream['name'],
-                        $dream['surname']
-                );
-                $user->setId($dream['user_id']);
+
                 $result[] = new Dream(
-                    $dream['dream_id'],
-                    $user,
+
                     $dream['title'],
                     $dream['content'],
                     DateTime::createFromFormat('Y-m-d', $dream['date']),
                     $dream['likes'],
                     $dream['commentamount']
                 );
+                end($result)->getDreamId($dream['dream_id']);
             } else {
                 $result[] = null;
             }

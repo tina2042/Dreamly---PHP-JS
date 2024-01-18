@@ -2,7 +2,6 @@
 
 class Dream {
     private int $dreamId;
-    private User $user;
     private String $title;
     private String $description;
     private DateTime $date;
@@ -10,9 +9,9 @@ class Dream {
     private int $commentAmount;
     private string $privacy;
 
-    public function __construct(int $dreamId, User $user, String $title, String $description, DateTime $date, int $likes, int $commentAmount) {
-        $this->dreamId=$dreamId;
-        $this->user = $user;
+    public function __construct(  String $title, String $description, DateTime $date, int $likes, int $commentAmount) {
+
+
         $this->title = $title;
         $this->description = $description;
         $this->date = $date;
@@ -21,9 +20,7 @@ class Dream {
     }
 
 
-    public function getUserName():String{
-        return $this->user->getName();
-    }
+
     public function setPrivacy(String $privacy)
     {
         $this->privacy=$privacy;
@@ -67,6 +64,11 @@ class Dream {
     public function getDreamId(): int
     {
         return $this->dreamId;
+    }
+
+    public function setDreamId(int $dreamId): void
+    {
+        $this->dreamId = $dreamId;
     }
 
 }

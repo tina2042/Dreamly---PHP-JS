@@ -12,6 +12,6 @@ Routing::get('dashboard', 'DefaultController');
 Routing::get('main', 'DefaultController');
 Routing::post('adding_dream', 'DreamController');
 Routing::get('calendar', 'DefaultController');
-
+//Routing::get('search', 'DefaultController'); 
 Routing::run($path);
 
