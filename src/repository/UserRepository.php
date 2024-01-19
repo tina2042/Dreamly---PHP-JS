@@ -6,24 +6,27 @@ class UserRepository extends Repository
 
     public function getUser(string $email): ?User
     {
+
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM users WHERE email = :email
+            SELECT * FROM users_view WHERE email = :email
         ');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        $stmt=null;
         if ($user == false) {
             return null;
         }
 
-        $tuser=User::getInstance($user['email'],
+        $thisuser=new User($user['email'],
         $user['password'],
         $user['name'],
         $user['surname']);
-        $tuser->setId($user['user_id']);
-        return $tuser;
+        $thisuser->setId($user['user_id']);
+        $thisuser->setPhoto($user['photo']);
+
+        return $thisuser;
     }
 
     public function addUser(User $user)
@@ -55,5 +58,6 @@ class UserRepository extends Repository
     $stmt->execute();
 
     }
-   
+
+
 }

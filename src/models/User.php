@@ -2,8 +2,6 @@
 
 class User
 {
-    private static ?User $instance = null; // Static instance variable to hold the singleton instance
-
     private int $user_id;
     private string $email;
     private string $password;
@@ -11,7 +9,7 @@ class User
     private string $surname;
     private string $photo;
 
-    private function __construct(
+    public function __construct(
         string $email,
         string $password,
         string $name,
@@ -24,19 +22,7 @@ class User
         $this->surname = $surname;
     }
 
-    public static function getInstance(
-        string $email,
-        string $password,
-        string $name,
-        string $surname
-    ): User
-    {
-        if (self::$instance === null) {
-            self::$instance = new User($email, $password, $name, $surname);
-        }
 
-        return self::$instance;
-    }
 
     public function setId(int $user_id): void
     {
@@ -73,5 +59,10 @@ class User
     public function setPhoto($photo): void
     {
         $this->photo = $photo;
+    }
+
+    public function getPhoto(): string
+    {
+        return $this->photo;
     }
 }

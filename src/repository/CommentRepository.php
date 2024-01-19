@@ -48,6 +48,8 @@ class CommentRepository extends Repository
                 *
             FROM
                 users
+            LEFT JOIN
+                    usersdetails on users.detail_id = usersdetails.id_detail
             JOIN
                 comments ON comments.user_id = users.user_id
             WHERE
@@ -61,7 +63,7 @@ class CommentRepository extends Repository
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $user=$users[0];
-            $result = User::getInstance($user['email'], $user['password'], $user['name'], $user['surname']);
+            $result = new User($user['email'], $user['password'], $user['name'], $user['surname']);
 
         return $result;
     }

@@ -14,7 +14,7 @@ class SecurityController extends AppController {
         
 
         setcookie('user_id', '', time() - 3600, '/');
-
+        setcookie('user_email', '', time()-3600, '/');
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");
         exit();

@@ -110,8 +110,8 @@
          foreach($fdreams as $dream): ?>
     <div class="friend-dream">
         <div id="top">
-            <img src="/public/img/photo.svg">
-            <p><?= $dream->getUserName() ?></p>
+            <img src=<?= $dream->getOwner()->getPhoto() ?>>
+            <p><?= $dream->getOwner()->getName() ?></p>
             <h4><?= $dream->getTitle() ?></h4>
             <data><?= $dream->getDate() ?></data>
         </div>

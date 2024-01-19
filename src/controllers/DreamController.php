@@ -33,7 +33,7 @@ class DreamController extends AppController {
             return $this->render('adding_dream', ['messages'=> ['Title or content can\'t be empty']]);
         }
         $user = $this->userRepository->getUser($_COOKIE['user_email']);
-        $dream = new Dream($title, $content, $date,0,0);
+        $dream = new Dream($user, $title, $content, $date,0,0);
         if($privacy!=null)
             $dream->setPrivacy($privacy);
         else{
