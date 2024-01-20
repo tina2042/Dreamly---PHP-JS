@@ -1,7 +1,6 @@
 .top-section{
     color: #000;
     font-family: Poppins;
-    display: flex;
     flex-direction: column;
     text-align: start;
     margin-left: 3.5vw;
@@ -17,8 +16,6 @@
 
 .Welcome >span{
     display: block;
-    color: #3B5775;
-    font-family: 'Pacifico';
     font-weight: 400;
     line-height: 131.7%;
 }

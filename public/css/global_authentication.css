@@ -1,0 +1,103 @@
+body{
+    background: linear-gradient(to right, #A6A2DA 50%, #FFF 50%);
+}
+.loginrectangle form {
+    width: 85%
+}
+
+.top-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.Welcome {
+    margin-left: 2.75vw;
+    font-size: 1.25em;
+    font-weight: 400;
+}
+
+.Welcome > span {
+    color: #3B5775;
+    font-family: 'Pacifico';
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    height: calc(100vh * (50 / 900));
+    border-radius: 9px;
+    border: 1px solid #ADADAD;
+    background: #FFF;
+    padding-left: 1vw;
+    color: #808080;
+    font-size: 0.9em;
+}
+.notes img, .sally img {
+    min-width: 100px;
+    max-width: 400px;
+    height: auto;
+    z-index: -10;
+}
+.notes img {
+    width: 30vw;
+    position: absolute;
+    left: 5%;
+    top: 10px;
+}
+.loginrectangle {
+    width: calc(100vw / 3);
+    height: 90vh;
+
+    border-radius: 40px;
+    background: #FFF;
+    box-shadow: 0px 4px 35px 0px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 10;
+}
+.sally img {
+    width: 40vw;
+    position: absolute;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+}
+form > p:last-of-type { /*wyśrodkowanie napisu OR */
+    text-align: center;
+    margin: 1vh 0;
+}
+.social-buttons {
+    display: flex;
+    justify-content: space-between;  /* dodaje odstępy między przyciskami */
+    width: 100%;  /* zapewnia, że przyciski rozciągną się na całą szerokość dostępnego miejsca */
+}
+
+.social-buttons > .google {
+    flex: 1.5;  /* sprawia, że przycisk Google jest szerszy */
+    margin-right: 5px;
+    background: #C9B4EC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.social-buttons > .google img {
+    margin-right: 10px;
+}
+
+.social-buttons > .facebook {
+    flex: 1;
+    background: #F6F6F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

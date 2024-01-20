@@ -1,5 +1,4 @@
 <?php
-
 require_once "/app/autoloader.php";
 
 class DefaultController extends AppController {
@@ -34,7 +33,8 @@ class DefaultController extends AppController {
         }
 
 
-        $this->render('main', ["dream"=>$this->dreamRepository->getMyLastDream(), "fdreams"=>$this->dreamRepository->getFriendDreams()]);
+        $this->render('main', ["dream"=>$this->dreamRepository->getMyLastDream(),
+            "fdreams"=>$this->dreamRepository->getFriendDreams()]);
         
     }
     public function calendar(){
@@ -44,8 +44,18 @@ class DefaultController extends AppController {
             exit();
         }
 
-        $this->render('calendar', ["dreams"=>$this->dreamRepository->getMyDreams()]);//po przecinku kolejne zmienne
+        $this->render('calendar', ["dreams"=>$this->dreamRepository->getMyDreams()]);
         
     }
-    
+    public function user_profile(){
+        if (!isset($_COOKIE['user_id'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/dashboard");
+            exit();
+        }
+
+        $this->render('user_profile', ["user"=>$this->userRepository->getUser($_COOKIE['user_email']),
+            "stats"=>$this->userRepository->getUserStats($_COOKIE['user_email'])]);
+
+    }
 }

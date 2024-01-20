@@ -1,25 +1,3 @@
-.loginrectangle form {
-    width: 85%
-}
-
-.top-section {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-}
-
-.Welcome {
-    margin-left: 2.75vw;
-    font-size: 1.25em;
-    font-weight: 400;
-}
-
-.Welcome > span {
-    color: #3B5775;
-    font-family: 'Pacifico';
-}
-
 .have-account-section {
     display: flex;
     flex-direction: column;
@@ -44,23 +22,8 @@
     margin-bottom: 1vh;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
 form p{
     margin-bottom: 1vh;
-}
-
-input {
-    height: calc(100vh * (50 / 900));
-    border-radius: 9px;
-    border: 1px solid #ADADAD;
-    background: #FFF;
-    padding-left: 1vw;
-    color: #808080;
-    font-size: 0.9em;
 }
 
 .name {

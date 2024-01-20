@@ -22,10 +22,16 @@
             <i class="fa-solid fa-calendar-days fa-2xl" style="color: #d0cef4;"></i>
                 Calendar
         </a>
-        <a href="#" class="nav-link">
+        <a href="user_profile" class="nav-link">
         <i class="fa-solid fa-user fa-2xl" style="color: #d0cef4;"></i>
                 Settings
         </a>
+    <form action="/logout" method="post">
+        <button type="submit" id="logoutButton" class="nav-link">
+            <i class="fa-solid fa-right-from-bracket fa-2xl" style="color: #a6a2da;"></i>
+            Log out
+        </button>
+    </form>
     </nav>
 
 <?php if(isset($messages)) { ?>

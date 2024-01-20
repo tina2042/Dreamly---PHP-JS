@@ -54,7 +54,13 @@ class DreamRepository extends Repository
 
     public function getMyLastDream()
     {
-        return $this->getMyDreams()[0];
+        $myDreams = $this->getMyDreams();
+
+        if (!empty($myDreams)) {
+            return $myDreams[0];
+        } else {
+            return null;
+        }
     }
 
     public function getFriendDreams(): array

@@ -3,7 +3,7 @@
 }
 
 body{
-    background: #A6A2DA;
+
     flex-direction: column;
     align-items: flex-start;
 }
@@ -76,6 +76,7 @@ button:hover{
     width: -webkit-fill-available;
 }
 #buttons >a>#cancel{
+    margin-top: 1em;
     background: #ADADAD;
 }
 

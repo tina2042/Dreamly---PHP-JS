@@ -10,8 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/register.css">
     <link rel="stylesheet" href="/public/css/global.css">
+    <link rel="stylesheet" href="/public/css/global_authentication.css">
+    <link rel="stylesheet" href="/public/css/register.css">
+
 </head>
 <body>
     <div class="notes">

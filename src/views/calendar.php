@@ -24,7 +24,7 @@
             <i class="fa-solid fa-calendar-days fa-2xl" style="color: #A6A2DA;"></i>
             Calendar
         </a>
-        <a href="#" class="nav-link">
+        <a href="user_profile" class="nav-link">
             <i class="fa-solid fa-user fa-2xl" style="color: #d0cef4;"></i>
             Settings
         </a>

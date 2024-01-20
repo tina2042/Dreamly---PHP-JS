@@ -3,14 +3,14 @@
 }
 
 body{
-    
-    background: #A6A2DA;
     flex-direction: column;
     align-items: flex-start;
     justify-content: unset;
 }
 
 .notes img {
+    position: absolute;
+    left: 5%;
     width: 25vw;
     top: 5vh;
 }
@@ -215,9 +215,13 @@ margin-top: 0.5em;
     margin: 0;
 }
 .sally img{
-    width:30vw;
+
+    right: 0;
+    transform: translateY(-50%);
+    width: 30vw;
     position: fixed;
-    bottom:5vh;
+    bottom: 5vh;
+    z-index: -1;
     top: 70vh;
     
 }

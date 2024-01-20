@@ -58,19 +58,26 @@ class SecurityController extends AppController {
         $password = $_POST['password'];
         $name = $_POST['firstname'];
         $surname = $_POST['surname'];
-        
-        $user = $this->userRepository->getUser($email);
-        
-        if ($user) {
-            return $this->render('login', ['messages' => ['User already exists!']]);
-        }
-        
-        
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        $user = User::getInstance($email, $passwordHash, $name, $surname);
-        $this->userRepository->addUser($user);
 
-        return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
+        try{
+        $user = $this->userRepository->getUser($email);
+            if ($user) {
+                return $this->render('login', ['messages' => ['User already exists!']]);
+            }
+        } catch(PDOException $ex){
+            return $this->render('register', ['messages' => ['Fill the form']]);
+        }
+
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+            $user = new User($email, $passwordHash, $name, $surname);
+            $this->userRepository->addUser($user);
+
+            return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
+
+
+        
+        
+
     }
 
 }
