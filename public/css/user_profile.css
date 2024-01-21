@@ -10,39 +10,44 @@ body{
     align-items: center;
     border-radius: 10px;
     background: #FFF;
-    box-shadow: 1px 2px 6px 0px rgba(0, 110, 233, 0.10);
+    box-shadow: 1px 2px 6px 0 rgba(0, 110, 233, 0.10);
+    justify-content: unset;
+
 }
 img{
-    margin-top:-10vh;
+    margin-top:-5vh;
     width: 20vh;
     height: 20vh;
     border-radius: 50px;
 }
-.statictics{
+.statistics{
     display: flex;
 }
-.statictics >p{
+.statistics >p{
     margin-right: 1em;
     margin-left: 1em;
+}
+.other {
+    justify-content: unset;
+    align-items: unset;
+    width: 65vw;
 }
 .other >div, .other>div>form>button{
     border-radius: 10px;
     border: 1px solid rgba(0, 110, 233, 0.06);
-    box-shadow: 0px 4px 20px 0px rgba(0, 110, 233, 0.02);
-    width: 65vw;
+    box-shadow: 0 4px 20px 0 rgba(0, 110, 233, 0.02);
     background: white;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    margin:1em 0em;
+    margin:1em 0;
     padding: 0;
 }
 .other > div > form>button {
     color:black;
     border-radius: 10px;
     border: 1px solid rgba(0, 110, 233, 0.06);
-    box-shadow: 0px 4px 20px 0px rgba(0, 110, 233, 0.02);
-    width: 65vw;
+    box-shadow: 0 4px 20px 0 rgba(0, 110, 233, 0.02);
     background: white;
     display: flex;
     justify-content: flex-start;
@@ -53,7 +58,7 @@ img{
 
 .other>div>p>i , .other>div>form>button>i{
     color: #A6A2DA;
-    margin:0em 1em;
+    margin:0 1em;
 }
 .sleep{
     position:absolute;
@@ -77,3 +82,10 @@ img{
     max-height: 0 !important;
 
  }
+.one-panel{
+    width: 100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,19 +1,19 @@
 <?php
 
 
-require_once "/app/autoloader.php";
+require_once "autoloader.php";
 
 class DreamRepository extends Repository
 {
 
-    private $userRepository ;
+    private UserRepository$userRepository;
     public function __construct()
     {
         parent::__construct();
         $this->userRepository=new UserRepository();
     }
 
-    public function getMyDreams(): array
+    public function getMyDreams($returnType = 'object')
     {
 
         $result = [];
@@ -34,15 +34,26 @@ class DreamRepository extends Repository
         $user = $this->userRepository->getUser($_COOKIE['user_email']);
         foreach ($dreams as $dream) {
             if ($dream !== false) {
-                $result[] = new Dream(
-                    $user,
-                    $dream['title'],
-                    $dream['content'],
-                    DateTime::createFromFormat('Y-m-d', $dream['date']),
-                    $dream['likes'],
-                    $dream['commentamount']
-                );
-                end($result)->setDreamId($dream['dream_id']);
+                switch ($returnType){
+                    case 'object':
+                        $result[] = new Dream(
+                            $user,
+                            $dream['title'],
+                            $dream['content'],
+                            DateTime::createFromFormat('Y-m-d', $dream['date']),
+                            $dream['likes'],
+                            $dream['commentamount']
+                        );
+                        end($result)->setDreamId($dream['dream_id']);
+                        break;
+                    case 'array':
+                        $result[] = [
+                            'title'=>$dream['title'],
+                            'content'=>$dream['content'],
+                            'dreamDate'=>  $dream['date']
+                        ];
+                        break;
+                }
 
             } else {
                 $result[] = null;

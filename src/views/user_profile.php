@@ -34,6 +34,7 @@
         </button>
     </form>
 </nav>
+<div class="one-panel">
 <div class="top">
     <div class="profile-photo">
         <img src=<?= $user->getPhoto() ?> alt="User Photo">
@@ -42,12 +43,17 @@
         <?= $user->getName() ?>
         <?= $user->getSurname() ?>
     </div>
-    <div class="statictics">
+    <div class="statistics">
         <p>
             <i class="fa-solid fa-heart"></i>
-            100 liked
+            <?= $stats->getLikeAmount() ?>
         </p>
-        <p>24 added</p>
+        <p> <?php if ($stats->getDreamsAmount() > 1): ?>
+                <?= $stats->getDreamsAmount() ?> dreams
+            <?php else: ?>
+                <?= $stats->getDreamsAmount() ?> dream
+            <?php endif; ?>
+        </p>
 
     </div>
 </div>
@@ -70,12 +76,34 @@
         <p><i class="fa-solid fa-square-poll-vertical"></i>
         Statistics</p>
         <div class="statistics-info hidden">
-            <p>You added <?= $stats->getDreamsAmount() ?> dreams.</p>
-            <p>You got <?= $stats->getLikeAmount() ?> likes.</p>
-            <p>You got <?= $stats->getCommentAmount() ?> comments.</p>
-
+            <p>You added
+                <?php if ($stats->getDreamsAmount() > 1): ?>
+                    <?= $stats->getDreamsAmount() ?> dreams.
+                <?php else: ?>
+                    <?= $stats->getDreamsAmount() ?> dream.
+                <?php endif; ?>
+            </p>
+            <p>You liked
+                <?php if ($stats->getLikeAmount() > 1): ?>
+                    <?= $stats->getLikeAmount() ?>
+                    dreams.
+                <?php else: ?>
+                    <?= $stats->getLikeAmount() ?>
+                    dream.
+                <?php endif; ?>
+            </p>
+            <p>You commented
+                <?php if ($stats->getCommentAmount()  > 1): ?>
+                    <?= $stats->getCommentAmount() ?>
+                    dreams.
+                <?php else:?>
+                    <?= $stats->getCommentAmount() ?>
+                    dream.
+                <?php endif; ?>
+            </p>
         </div>
     </div>
+
     <div>
         <form action="/logout" method="post">
         <button type="submit" id="logoutButton" >
@@ -84,6 +112,7 @@
         </button>
         </form>
     </div>
+</div>
 </div>
 <img class="sleep" src="public/img/sleep.svg">
 </div>

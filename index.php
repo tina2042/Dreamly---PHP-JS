@@ -13,6 +13,10 @@ Routing::get('main', 'DefaultController');
 Routing::post('adding_dream', 'DreamController');
 Routing::get('calendar', 'DefaultController');
 Routing::get('user_profile','DefaultController');
-//Routing::get('search', 'DefaultController'); 
+Routing::get('admin_profile','DefaultController');
+Routing::post('delete_user', 'SecurityController');
+Routing::get('get_dreams', 'DreamController');
+Routing::post('search', 'DefaultController');
+Routing::post('add_friend','DefaultController');
 Routing::run($path);
 

@@ -55,4 +55,23 @@ class DreamController extends AppController {
         }
         $this->render('view_dream');
     }
+    public function get_dreams()
+    {
+        if (!isset($_COOKIE['user_id'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/dashboard");
+            exit();
+        }
+        $result=[];
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            http_response_code(401);
+            die();
+        }
+
+        $result=$this->dreamRepository->getMyDreams('array');
+
+        http_response_code(200);
+        echo json_encode($result);
+        die();
+    }
 }

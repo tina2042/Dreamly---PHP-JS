@@ -49,7 +49,7 @@ class CommentRepository extends Repository
             FROM
                 users
             LEFT JOIN
-                    usersdetails on users.detail_id = usersdetails.id_detail
+                    usersdetails on users.detail_id = usersdetails.detail_id
             JOIN
                 comments ON comments.user_id = users.user_id
             WHERE

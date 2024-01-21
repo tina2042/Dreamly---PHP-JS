@@ -23,7 +23,6 @@ class DefaultController extends AppController {
     public function main()
     {
         if (isset($_COOKIE['user_id'])) {
-            // Pobierz identyfikator użytkownika z cookie
             $user_id = $_COOKIE['user_id'];
 
         } else {
@@ -53,9 +52,34 @@ class DefaultController extends AppController {
             header("Location: {$url}/dashboard");
             exit();
         }
+        if(!$this->userRepository->isAdmin($_COOKIE['user_id'])) {
+            $this->render('user_profile', ["user" => $this->userRepository->getUser($_COOKIE['user_email']),
+                "stats" => $this->userRepository->getUserStats($_COOKIE['user_email'])]);
+        } else {
+            $this->render('admin_profile', ["user" => $this->userRepository->getUser($_COOKIE['user_email']),
+                "stats" => $this->userRepository->getUserStats($_COOKIE['user_email']), "allUsers"=>$this->userRepository->getAllUsers()]);
 
-        $this->render('user_profile', ["user"=>$this->userRepository->getUser($_COOKIE['user_email']),
-            "stats"=>$this->userRepository->getUserStats($_COOKIE['user_email'])]);
+        }
+    }
+    public function admin_profile()
+    {
+        if (!isset($_COOKIE['user_id'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/dashboard");
+            exit();
+        }
+       $this->user_profile();
+    }
+    public function search()
+    {
+        $result=$this->userRepository->getUsersForSearch($_POST['query']);
+        echo json_encode($result);
+        die();
+    }
+    public function add_friend()
+    {
+        $this->userRepository->addFriend($_POST['user_id']);
 
+        die();
     }
 }

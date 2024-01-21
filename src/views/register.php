@@ -43,7 +43,7 @@
 
         <form action="/register" method="POST">
             <p>Enter your email address</p>
-            <input name="email" type="text" placeholder="email@email.com">
+            <input name="email" type="email" placeholder="email@email.com">
             <div class="name">
                 <div>
                     <p>First name</p>

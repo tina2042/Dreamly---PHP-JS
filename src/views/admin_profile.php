@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin profile</title>
+    <script src="https://kit.fontawesome.com/a99d7ad425.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/global.css">
+    <link rel="stylesheet" href="/public/css/user_profile.css">
+    <link rel="stylesheet" href="/public/css/admin_profile.css">
+    <script src="public/js/settings.js" defer></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="main" class="nav-link">
+        <i class="fa-solid fa-house fa-2xl" style="color: #d0cef4;"></i>
+        Main page
+    </a>
+    <a href="calendar" class="nav-link">
+        <i class="fa-solid fa-calendar-days fa-2xl" style="color: #d0cef4;"></i>
+        Calendar
+    </a>
+    <a href="user_profile" class="nav-link">
+        <i class="fa-solid fa-user fa-2xl" style="color: #A6A2DA;"></i>
+        Settings
+    </a>
+    <form action="/logout" method="post">
+        <button type="submit" id="logoutButton" class="nav-link">
+            <i class="fa-solid fa-right-from-bracket fa-2xl" style="color: #a6a2da;"></i>
+            Log out
+        </button>
+    </form>
+</nav>
+<div class="two_panels">
+    <div class="user_settings">
+        <div class="top">
+    <div class="profile-photo">
+        <img src=<?= $user->getPhoto() ?> alt="User Photo">
+    </div>
+    <div class="name">
+        <?= $user->getName() ?>
+        <?= $user->getSurname() ?>
+    </div>
+    <div class="statistics">
+        <p>
+            <i class="fa-solid fa-heart"></i>
+            <?= $stats->getLikeAmount() ?>
+        </p>
+        <p> <?php if ($stats->getDreamsAmount() > 1): ?>
+                <?= $stats->getDreamsAmount() ?> dreams
+            <?php else: ?>
+                <?= $stats->getDreamsAmount() ?> dream
+            <?php endif; ?>
+        </p>
+
+    </div>
+</div>
+        <div class="other">
+        <div >
+            <p><i class="fa-solid fa-user"></i>
+                Profile info</p>
+            <div class="profile-info hidden">
+                <p>Name: <?= $user->getName() ?></p>
+                <p>Surname: <?= $user->getSurname() ?></p>
+                <p>Email: <?= $user->getEmail() ?></p>
+
+            </div>
+        </div>
+        <div >
+            <p><i class="fa-solid fa-camera"></i>
+                Change photo</p>
+        </div>
+        <div>
+            <p><i class="fa-solid fa-square-poll-vertical"></i>
+                Statistics</p>
+            <div class="statistics-info hidden">
+                <p>You added
+                    <?php if ($stats->getDreamsAmount() > 1): ?>
+                        <?= $stats->getDreamsAmount() ?> dreams.
+                    <?php else: ?>
+                        <?= $stats->getDreamsAmount() ?> dream.
+                    <?php endif; ?>
+                </p>
+                <p>You liked
+                    <?php if ($stats->getLikeAmount() > 1): ?>
+                        <?= $stats->getLikeAmount() ?>
+                        dreams.
+                    <?php else: ?>
+                        <?= $stats->getLikeAmount() ?>
+                        dream.
+                    <?php endif; ?>
+                </p>
+                <p>You commented
+                    <?php if ($stats->getCommentAmount()  > 1): ?>
+                        <?= $stats->getCommentAmount() ?>
+                        dreams.
+                    <?php else:?>
+                        <?= $stats->getCommentAmount() ?>
+                        dream.
+                    <?php endif; ?>
+                </p>
+
+
+            </div>
+        </div>
+        <div>
+            <form action="/logout" method="post">
+                <button type="submit" id="logoutButton" >
+                    <p><i class="fa-solid fa-right-from-bracket" style="color: #a6a2da;"></i>
+                        Log out </p>
+                </button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div class="admin-panel">
+        <?php foreach($allUsers as $user): ?>
+            <div class="session-info  user-info">
+
+                    <img src=<?= $user->getPhoto() ?>>
+
+                <div class="session-details">
+                    <p class="dark"><?= $user->getName() ?> <?= $user->getSurname() ?></p>
+                    <p class="dark email"><?= $user->getEmail() ?></p>
+                </div>
+                <button type="button" class="small-btn" data-email="<?= $user->getEmail() ?>">Delete User</button>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    </div>
+<img class="sleep" src="public/img/sleep.svg">
+</div>
+</body>

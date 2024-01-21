@@ -47,7 +47,6 @@ class SecurityController extends AppController {
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/main");
     }
-
     public function register()
     {
         if (!$this->isPost()) {
@@ -59,6 +58,10 @@ class SecurityController extends AppController {
         $name = $_POST['firstname'];
         $surname = $_POST['surname'];
 
+        if( !filter_input( INPUT_POST, 'email', FILTER_VALIDATE_EMAIL ) ){
+            http_response_code(403);
+            return $this->render('register', ['messages' => ['Email is not correct']]);
+        }
         try{
         $user = $this->userRepository->getUser($email);
             if ($user) {
@@ -78,6 +81,23 @@ class SecurityController extends AppController {
         
         
 
+    }
+    public function delete_user()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(401);
+            die();
+        }
+        if( !filter_input( INPUT_POST, 'email', FILTER_VALIDATE_EMAIL ) ){
+            http_response_code(403);
+            die();
+        }
+        $email = filter_input( INPUT_POST, 'email', FILTER_SANITIZE_EMAIL );
+
+        $this->userRepository->deleteUser($email);
+
+        http_response_code(200);
+        die();
     }
 
 }

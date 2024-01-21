@@ -31,8 +31,6 @@ class UserRepository extends Repository
 
     public function addUser(User $user) :void
     {
-
-
             $stmt = $this->database->connect()->prepare('
                 INSERT INTO usersdetails (name, surname)
                 VALUES (?, ?);
@@ -117,6 +115,114 @@ class UserRepository extends Repository
 
         return $result;
 
+    }
+
+    public function isAdmin($user_id)
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT is_admin(:user_id)');
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $is_admin = $stmt->fetchColumn();
+
+        $stmt = null;
+
+        return $is_admin;
+    }
+
+    public function getAllUsers()
+    {
+
+        $result = [];
+        $stmt = $this->database->connect()->prepare('
+            SELECT name, surname, email, photo
+            FROM users_view
+            WHERE user_id <> :user_id;
+        ');
+        $stmt->bindParam(':user_id', $_COOKIE['user_id'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        $users_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = null;
+
+        foreach ($users_array as $user) {
+            $result[] = new User(
+                $user['email'],
+                "",
+                $user['name'],
+                $user['surname']
+            );
+            end($result)->setPhoto($user['photo']);
+        }
+
+        return $result;
+
+    }
+
+    public function deleteUser($email)
+    {
+        $user_id = $this->getUserId($email);
+        $stmt = $this->database->connect()->prepare('
+               CALL delete_user(:user_id);
+        ');
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function getUserId(string $email): int{
+        $stmt = $this->database->connect()->prepare('
+            SELECT user_id 
+            FROM public.users 
+            WHERE email = :email;
+        ');
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = null;
+
+        return $data['user_id'];
+    }
+
+    public function getUsersForSearch($query)
+    {
+        $stmt = $this->database->connect()->prepare("
+            SELECT
+                user_id, photo, CONCAT(name, ' ', surname) full_name
+            FROM users_view
+            WHERE CONCAT(name, ' ', surname) ILIKE :query
+            AND user_id NOT IN (
+                SELECT friend_id
+                FROM friends
+                WHERE user_id = :user_id
+            );
+        ");
+        $query="%".$query."%";
+        $stmt->bindParam(':query', $query, PDO::PARAM_STR);
+        $stmt->bindParam(':user_id', $_COOKIE['user_id']);
+        $stmt->execute();
+
+        $users=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = null;
+
+        return $users;
+    }
+
+    public function addFriend($user_id)
+    {
+        $stmt = $this->database->connect()->prepare('
+                INSERT INTO friends (user_id, friend_id)
+                VALUES (?, ?);
+            ');
+
+        $stmt->execute([
+            $_COOKIE['user_id'],
+            $user_id
+        ]);
+
+        $stmt = null;
     }
 
 
