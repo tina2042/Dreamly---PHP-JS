@@ -58,7 +58,6 @@ class DefaultController extends AppController {
         } else {
             $this->render('admin_profile', ["user" => $this->userRepository->getUser($_COOKIE['user_email']),
                 "stats" => $this->userRepository->getUserStats($_COOKIE['user_email']), "allUsers"=>$this->userRepository->getAllUsers()]);
-
         }
     }
     public function admin_profile()
@@ -79,7 +78,6 @@ class DefaultController extends AppController {
     public function add_friend()
     {
         $this->userRepository->addFriend($_POST['user_id']);
-
         die();
     }
 }

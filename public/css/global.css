@@ -96,6 +96,10 @@ a{
 
 .nav-link i, button i {
     margin: 0vh 1vw 0vh 1vw; /* Dodatkowy odstęp pomiędzy ikoną a tekstem */
+    color:#a6a2da;
+}
+form > #logoutButton i{
+    color:#9a87e2;
 }
 
 .nav-link:hover, .navbar form > button:hover {
@@ -133,6 +137,7 @@ a{
     padding: 10px 20px;
     border-radius: 35.765px;
     width: 15vw;
+    height: fit-content;
     background: #C9B4EC;
     cursor: pointer;
 
@@ -162,4 +167,19 @@ a{
     display: flex;
     margin: 0 5vw;
     justify-content: flex-end;
+}
+
+
+@media (max-width: 700px) {
+    .nav-link > span {
+        display: none;
+    }
+    .floating-button  {
+        right:40%;
+        bottom: 1em;
+        width: auto;
+    }
+    .floating-button button{
+        width: auto;
+    }
 }

@@ -89,3 +89,15 @@ img{
     flex-direction: column;
     align-items: center;
 }
+.fa-house, .fa-calendar-da{
+    color: #d0cef4;
+}
+.fa-right-from-bracket, .fa-users{
+    color: #A6A2DA;
+}
+@media(max-width: 800px){
+
+    .sleep{
+        display: none;
+    }
+}

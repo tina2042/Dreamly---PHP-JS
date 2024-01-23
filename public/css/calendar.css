@@ -379,3 +379,10 @@ body {
 @keyframes fadeOutShink  {
     to { opacity: 0; padding: 0px; height: 0px; }
 }
+
+.fa-house, .fa-user{
+    color: #d0cef4;
+}
+.fa-right-from-bracket, .fa-calendar-days{
+    color: #A6A2DA;
+}

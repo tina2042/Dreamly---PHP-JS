@@ -41,4 +41,29 @@
     align-self: center;
     margin-right: 1em;
     cursor: pointer;
+    width: 50%;
+}
+
+.fa-users{
+    color: #A6A2DA;
+}
+@media(max-width: 800px){
+    .two_panels{
+        flex-direction: column;
+    }
+    .user_settings{
+        width: 100%;
+    }
+    .other, .top {
+        width: 90%;
+    }
+    .admin-panel{
+        margin-top: 2em;
+        width: 100%;
+
+    }
+    .user-info{
+        width: 90%;
+    }
+
 }

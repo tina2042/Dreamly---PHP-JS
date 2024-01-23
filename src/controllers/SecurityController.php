@@ -11,7 +11,6 @@ class SecurityController extends AppController {
         $this->userRepository = new UserRepository();
     }
     public function logout(){
-        
 
         setcookie('user_id', '', time() - 3600, '/');
         setcookie('user_email', '', time()-3600, '/');

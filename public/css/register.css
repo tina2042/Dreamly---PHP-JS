@@ -50,7 +50,14 @@ form p{
     width: 12vw;
 }
   
-
+@media(max-width: 800px){
+    .name div, .surname div{
+        width:50%;
+    }
+    .name  input, .surname  input {
+        width: auto;
+    }
+}
 
 
 

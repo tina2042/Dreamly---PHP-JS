@@ -15,21 +15,21 @@
 
 <nav class="navbar">
         <a href="main" class="nav-link">
-            <i class="fa-solid fa-house fa-2xl" style="color: #d0cef4;"></i>
-                Main page
+            <i class="fa-solid fa-house fa-2xl" ></i>
+            <span>Main page</span>
         </a>
         <a href="#" class="nav-link">
-            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #d0cef4;"></i>
-                Calendar
+            <i class="fa-solid fa-calendar-days fa-2xl" ></i>
+            <span>Calendar</span>
         </a>
         <a href="user_profile" class="nav-link">
-        <i class="fa-solid fa-user fa-2xl" style="color: #d0cef4;"></i>
-                Settings
+        <i class="fa-solid fa-user fa-2xl" "></i>
+            <span>Settings</span>
         </a>
     <form action="/logout" method="post">
         <button type="submit" id="logoutButton" class="nav-link">
-            <i class="fa-solid fa-right-from-bracket fa-2xl" style="color: #a6a2da;"></i>
-            Log out
+            <i class="fa-solid fa-right-from-bracket fa-2xl" ></i>
+            <span>Log out</span>
         </button>
     </form>
     </nav>
