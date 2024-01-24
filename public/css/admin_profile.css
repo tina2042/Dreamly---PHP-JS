@@ -8,6 +8,7 @@
     flex-direction: row;
     width: 100%;
     height: 100%;
+    justify-content: center;
 }
 
 .admin-panel {
@@ -57,20 +58,26 @@
 @media (max-width: 800px) {
     .two_panels {
         flex-direction: column;
+        justify-content: flex-start;
     }
 
     .user_settings {
+        display: flex;
         width: 100%;
+        flex-direction: column;
+        align-items: center;
     }
 
     .other, .top {
+        margin-left: 0;
         width: 90%;
     }
 
     .admin-panel {
+        margin-left: 0;
         margin-top: 2em;
         width: 100%;
-
+        align-items: center;
     }
 
     .user-info {
