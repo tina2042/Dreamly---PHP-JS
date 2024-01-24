@@ -63,7 +63,7 @@ BEGIN
     );
  
     DELETE FROM public.users WHERE user_id = p_user_id;
-
+    COMMIT;
 END;
 $$;
 
