@@ -18,20 +18,20 @@
 
 <nav class="navbar">
     <a href="main" class="nav-link">
-        <i class="fa-solid fa-house fa-2xl" ></i>
+        <i class="fa-solid fa-house fa-2xl main"></i>
         <span>Main page</span>
     </a>
     <a href="calendar" class="nav-link">
-        <i class="fa-solid fa-calendar-days fa-2xl" ></i>
+        <i class="fa-solid fa-calendar-days fa-2xl calendar"></i>
         <span>Calendar</span>
     </a>
     <a href="user_profile" class="nav-link">
-        <i class="fa-solid fa-user fa-2xl" ></i>
+        <i class="fa-solid fa-user fa-2xl setting"></i>
         <span>Settings</span>
     </a>
     <form action="/logout" method="post">
         <button type="submit" id="logoutButton" class="nav-link">
-            <i class="fa-solid fa-right-from-bracket fa-2xl" ></i>
+            <i class="fa-solid fa-right-from-bracket fa-2xl"></i>
             <span>Log out</span>
         </button>
     </form>
@@ -93,12 +93,16 @@
             </div>
         </div>
         <div class="dream-comments" data-dream-id="<?= $dream->getDreamId() ?>">
-            <?php $commentRepository = new CommentRepository();
-            $comments = $commentRepository->getDreamComments($dream->getDreamId());
-            if (!empty($comments)) {
-                foreach ($comments as $comment): ?>
+            <?php
+            $dreamId=$dream->getDreamId();
+            $dreamComments = array_filter($comments, function($comment) use ($dreamId) {
+                return $comment->getDreamId() === $dreamId;
+            });
+
+            if (!empty($dreamComments)) {
+                foreach ($dreamComments as $comment): ?>
                     <div class="comment">
-                        <p class="name"><?= $commentRepository->getCommentOwner($comment->getCommentId())->getName(); ?></p>
+                        <p class="name"><?= $comment->getOwner()->getName(); ?></p>
                         <p class="comment-text"><?= $comment->getCommentContent() ?></p>
                     </div>
                 <?php endforeach;
@@ -146,12 +150,15 @@
                 </div>
             </div>
             <div class="dream-comments" data-dream-id="<?= $dream->getDreamId() ?>">
-                <?php $commentRepository = new CommentRepository();
-                $comments = $commentRepository->getDreamComments($dream->getDreamId());
-                if (!empty($comments)) {
-                    foreach ($comments as $comment): ?>
+                <?php
+                $dreamId=$dream->getDreamId();
+                $dreamComments = array_filter($comments, function($comment) use ($dreamId) {
+                    return $comment->getDreamId() === $dreamId;
+                });
+                if (!empty($dreamComments)) {
+                    foreach ($dreamComments as $comment): ?>
                         <div class="comment">
-                            <p class="name"><?= $commentRepository->getCommentOwner($comment->getCommentId())->getName(); ?></p>
+                            <p class="name"><?= $comment->getOwner()->getName(); ?></p>
                             <p class="comment-text"><?= $comment->getCommentContent() ?></p>
                         </div>
                     <?php endforeach;

@@ -59,7 +59,8 @@
         let self = this;
 
         this.events.forEach(function (ev) {
-            ev.dreamDate = moment(ev.dreamDate);;
+            ev.dreamDate = moment(ev.dreamDate);
+
         });
 
 
@@ -191,13 +192,11 @@
 
         let currentOpened = document.querySelector('.details');
 
-        //Check to see if there is an open detais box on the current row
         if (currentOpened && currentOpened.parentNode === el.parentNode) {
             let details = currentOpened;
             let arrow = document.querySelector('.arrow');
         } else {
-            //Close the open events on differnt week row
-            //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
+            currentOpened && currentOpened.parentNode.removeChild(currentOpened);
             if (currentOpened) {
                 currentOpened.addEventListener('webkitAnimationEnd', function () {
                     currentOpened.parentNode.removeChild(currentOpened);
@@ -214,13 +213,10 @@
                 currentOpened.className = 'details out';
             }
 
-            //Create the Details Container
             details = createElement('div', 'details in');
 
-            //Create the arrow
             const arrow = createElement('div', 'arrow');
 
-            //Create the event wrapper
 
             details.appendChild(arrow);
             el.parentNode.appendChild(details);
@@ -239,7 +235,6 @@
     }
 
     Calendar.prototype.renderEvents = function (events, ele) {
-        //Remove any events in the current details element
         const currentWrapper = ele.querySelector('.events');
         let wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
 
@@ -314,13 +309,13 @@
 }();
 
 
-!async function() {
+!async function () {
 
     const response = await fetch('/get_dreams', {
         method: 'GET'
     });
 
-    if(response.status !== 200) throw new Error('Error');
+    if (response.status !== 200) throw new Error('Error');
     const data = await response.json();
 
     data.forEach(dream => {

@@ -7,61 +7,65 @@
     <script src="https://kit.fontawesome.com/a99d7ad425.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="/public/css/global.css">
     <link rel="stylesheet" href="/public/css/adding_dream.css">
 </head>
 <body>
 
+
 <nav class="navbar">
-        <a href="main" class="nav-link">
-            <i class="fa-solid fa-house fa-2xl" ></i>
-            <span>Main page</span>
-        </a>
-        <a href="#" class="nav-link">
-            <i class="fa-solid fa-calendar-days fa-2xl" ></i>
-            <span>Calendar</span>
-        </a>
-        <a href="user_profile" class="nav-link">
-        <i class="fa-solid fa-user fa-2xl" "></i>
-            <span>Settings</span>
-        </a>
+    <a href="main" class="nav-link">
+        <i class="fa-solid fa-house fa-2xl main"></i>
+        <span>Main page</span>
+    </a>
+    <a href="calendar" class="nav-link">
+        <i class="fa-solid fa-calendar-days fa-2xl calendar"></i>
+        <span>Calendar</span>
+    </a>
+    <a href="user_profile" class="nav-link">
+        <i class="fa-solid fa-user fa-2xl setting"></i>
+        <span>Settings</span>
+    </a>
     <form action="/logout" method="post">
         <button type="submit" id="logoutButton" class="nav-link">
-            <i class="fa-solid fa-right-from-bracket fa-2xl" ></i>
+            <i class="fa-solid fa-right-from-bracket fa-2xl"></i>
             <span>Log out</span>
         </button>
     </form>
-    </nav>
+</nav>
 
-<?php if(isset($messages)) { ?>
+<?php if (isset($messages)) { ?>
 
     <div class="messages">
         <?php
-        if(isset($messages)){
-            foreach($messages as $message) {
+        if (isset($messages)) {
+            foreach ($messages as $message) {
                 echo $message;
             }
         }
         ?>
     </div>
 <?php } ?>
-    <div class="add-dream-form">
-        <form action="/adding_dream" method="POST">
-            <input type="text" id="title" name="title" placeholder="Enter title">
-            <textarea id="content" name="content" placeholder="Write your dream here"></textarea>
-            <div id="buttons">
-                <div class="dropdown-list">
-                    <select name="privacy" id="privacy">
-                        <option value="Public">Public</option>
-                        <option value="Private">Private</option>
-                    </select>
-                </div>
-                <a href='main'><button id="cancel" type="button">Cancel</button></a>
-                <button type="submit" class="submit">Add Dream</button>
+<div class="add-dream-form">
+    <form action="/adding_dream" method="POST">
+        <input type="text" id="title" name="title" placeholder="Enter title">
+        <textarea id="content" name="content" placeholder="Write your dream here"></textarea>
+        <div id="buttons">
+            <div class="dropdown-list">
+                <select name="privacy" id="privacy">
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                </select>
             </div>
-        </form>
-    </div>
-    
+            <a href='main'>
+                <button id="cancel" type="button">Cancel</button>
+            </a>
+            <button type="submit" class="submit">Add Dream</button>
+        </div>
+    </form>
+</div>
+
 </body>
 </html>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/public/css/error.css">
 </head>
 <body>
-    <h1>Error <?php echo $errorCode; ?></h1>
-    <p><?php echo $errorMessage; ?></p>
+<h1>Error <?php echo $errorCode; ?></h1>
+<p><?php echo $errorMessage; ?></p>
 </body>
 </html>

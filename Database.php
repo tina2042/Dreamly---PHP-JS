@@ -2,7 +2,9 @@
 
 require_once "autoloader.php";
 require_once "config.php";
-class Database {
+
+class Database
+{
     private $username;
     private $password;
     private $host;
@@ -23,14 +25,13 @@ class Database {
                 "pgsql:host=$this->host;port=5432;dbname=$this->database",
                 $this->username,
                 $this->password,
-                ["sslmode"  => "prefer"]
+                ["sslmode" => "prefer"]
             );
 
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
-        }
-        catch(PDOException $e) {
+        } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
     }

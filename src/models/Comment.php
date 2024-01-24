@@ -3,13 +3,15 @@
 class Comment
 {
     private int $comment_id;
-    private int $user_id;
+    private User $owner;
     private int $dream_id;
-    private String $comment_content;
+    private string $comment_content;
     private DateTime $date;
-    public function __construct(int $comment_id, int $user_id, int $dream_id, String $comment_content, DateTime $date) {
+
+    public function __construct(int $comment_id, User $owner, int $dream_id, string $comment_content, DateTime $date)
+    {
         $this->comment_id = $comment_id;
-        $this->user_id = $user_id;
+        $this->owner = $owner;
         $this->dream_id = $dream_id;
         $this->comment_content = $comment_content;
         $this->date = $date;
@@ -29,6 +31,16 @@ class Comment
     public function getCommentId(): int
     {
         return $this->comment_id;
+    }
+
+    public function getOwner(): User
+    {
+        return $this->owner;
+    }
+
+    public function getDreamId(): int
+    {
+        return $this->dream_id;
     }
 
 

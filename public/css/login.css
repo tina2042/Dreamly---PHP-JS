@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: calc(3.7125vw); /* Wyrównanie do prawej */
+    margin-right: 3.7125vw;
 }
 
 .no-account-section > p {
@@ -17,7 +17,7 @@
 .Sign-in {
     font-size: 3.4em;
     font-weight: 500;
-    align-self: flex-start; /* Wyrównanie do lewej */
+    align-self: flex-start;
     margin-left: 2.75vw;
 }
 

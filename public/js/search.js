@@ -1,6 +1,7 @@
 const searchBar = document.querySelector('.searchTerm');
 const searchResults = document.querySelector('#search-results');
 const searchButton = document.querySelector('.searchButton');
+
 async function addFriend(user_id) {
     const formData = new FormData();
     formData.append('user_id', user_id);
@@ -10,7 +11,7 @@ async function addFriend(user_id) {
             method: "POST",
             body: formData
         });
-        if(response.status !== 200) throw new Error('Error');
+        if (response.status !== 200) throw new Error('Error');
         alert("Friend added");
     } catch (error) {
         console.error('Error from fetch API:', error);
@@ -30,7 +31,7 @@ async function searchFriends(query, clicked) {
                 method: "POST",
                 body: formData
             });
-            if(response.status !== 200) throw new Error('Error');
+            if (response.status !== 200) throw new Error('Error');
             const data = await response.json();
             searchResults.style.display = 'block';
             if (data.length === 0) {
@@ -61,16 +62,17 @@ async function searchFriends(query, clicked) {
         }
     }
 }
+
 let searchTimeout = false;
-searchBar.addEventListener('input', function() {
-    if(searchTimeout) clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(()=>{
+searchBar.addEventListener('input', function () {
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
         searchFriends(this.value, false);
     }, 250);
 });
-searchButton.addEventListener('click', function (){
-    if(searchTimeout) clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(()=>{
+searchButton.addEventListener('click', function () {
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
         searchFriends(searchBar.value, true);
     }, 250);
 });

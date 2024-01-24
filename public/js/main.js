@@ -4,7 +4,7 @@ const likeButtons = document.querySelectorAll('.likes');
 
 updateLikeStatus();
 commentIcons.forEach(commentIcon => {
-    commentIcon.addEventListener('click',  showComments);
+    commentIcon.addEventListener('click', showComments);
 });
 
 function showComments(e) {
@@ -17,52 +17,53 @@ function showComments(e) {
         }
     });
 }
-    likeButtons.forEach(likeButton => {
-        likeButton.addEventListener('click', async function(){
-            const dreamId = likeButton.dataset.dreamId;
-            let dreamIdInt=parseInt(dreamId);
 
-            const data ={'dreamId': dreamIdInt};
+likeButtons.forEach(likeButton => {
+    likeButton.addEventListener('click', async function () {
+        const dreamId = likeButton.dataset.dreamId;
+        let dreamIdInt = parseInt(dreamId);
 
-            const response = await fetch("/like", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+        const data = {'dreamId': dreamIdInt};
+
+        const response = await fetch("/like", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        try {
+            const response = await fetch("/isLiked", {
+                method: "GET",
             });
 
-            try{
-                const response = await fetch("/isLiked", {
-                    method: "GET",
-                });
+            if (response.status !== 200) throw new Error('Error');
 
-                if (response.status !== 200) throw new Error('Error');
+            const likedDreams = await response.json();
 
-                const likedDreams = await response.json();
+            const dreamId_number = parseInt(dreamId);
+            let isLiked = likedDreams.includes(dreamId_number);
 
-                const dreamId_number = parseInt(dreamId);
-                let isLiked = likedDreams.includes(dreamId_number);
+            const likeIcon = likeButton.querySelector("i");
+            likeIcon.classList.toggle('liked', isLiked);
 
-                const likeIcon = likeButton.querySelector("i");
-                likeIcon.classList.toggle('liked', isLiked);
+            const likeCount = likeButton.querySelector('.like-amount');
 
-                const likeCount = likeButton.querySelector('.like-amount');
-
-                if(isLiked){
-                    likeCount.textContent = parseInt(likeCount.textContent) + 1;
-                } else{
-                    likeCount.textContent = parseInt(likeCount.textContent) -1;
-                }
-
-            } catch (error) {
-                console.error('Error from fetch API:', error);
+            if (isLiked) {
+                likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            } else {
+                likeCount.textContent = parseInt(likeCount.textContent) - 1;
             }
-        })
-    });
 
-async function updateLikeStatus(){
-    try{
+        } catch (error) {
+            console.error('Error from fetch API:', error);
+        }
+    })
+});
+
+async function updateLikeStatus() {
+    try {
         const response = await fetch("/isLiked", {
             method: "GET",
         });
@@ -85,11 +86,12 @@ async function updateLikeStatus(){
         console.error('Error from fetch API:', error);
     }
 }
-async function likeDream(e){
-    const dreamId = e.target.dataset.dreamId;
-    let dreamIdInt=parseInt(dreamId);
 
-    const data ={'dreamId': dreamIdInt};
+async function likeDream(e) {
+    const dreamId = e.target.dataset.dreamId;
+    let dreamIdInt = parseInt(dreamId);
+
+    const data = {'dreamId': dreamIdInt};
 
     const response = await fetch("/like", {
         method: "POST",
@@ -99,7 +101,7 @@ async function likeDream(e){
         body: JSON.stringify(data)
     });
 
-    try{
+    try {
         const response = await fetch("/isLiked", {
             method: "GET",
         });
@@ -115,11 +117,11 @@ async function likeDream(e){
         e.target.classList.toggle('liked', isLiked);
 
         const likeCount = e.target.querySelector('.like-amount');
-        console.log(likeCount.textContent );
-        if(isLiked){
+        console.log(likeCount.textContent);
+        if (isLiked) {
             likeCount.textContent = parseInt(likeCount.textContent) + 1;
-        } else{
-            likeCount.textContent = parseInt(likeCount.textContent) -1;
+        } else {
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
         }
 
     } catch (error) {

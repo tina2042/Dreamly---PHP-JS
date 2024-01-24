@@ -1,8 +1,12 @@
 <?php
-class Visibility {
+
+class Visibility
+{
     const PUBLIC = 1;
     const PRIVATE = 2;
-    public static function getIntValue($strValue) {
+
+    public static function getIntValue($strValue)
+    {
         switch (strtoupper($strValue)) {
             case "PUBLIC":
                 return self::PUBLIC;

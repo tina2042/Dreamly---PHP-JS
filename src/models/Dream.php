@@ -1,17 +1,19 @@
 <?php
 
-class Dream {
+class Dream
+{
     private int $dreamId;
     private User $owner;
-    private String $title;
-    private String $description;
+    private string $title;
+    private string $description;
     private DateTime $date;
     private int $likes;
     private int $commentAmount;
     private string $privacy;
 
-    public function __construct(User $owner, String $title, String $description, DateTime $date, int $likes, int $commentAmount) {
-        $this->owner=$owner;
+    public function __construct(User $owner, string $title, string $description, DateTime $date, int $likes, int $commentAmount)
+    {
+        $this->owner = $owner;
         $this->title = $title;
         $this->description = $description;
         $this->date = $date;
@@ -19,43 +21,53 @@ class Dream {
         $this->commentAmount = $commentAmount;
     }
 
-    public function setPrivacy(String $privacy)
+    public function getPrivacy(): string
     {
-        $this->privacy=$privacy;
-    }
-    public function getPrivacy(): String
-    {
-        return$this->privacy;
+        return $this->privacy;
     }
 
-    public function getTitle() :String {
+    public function setPrivacy(string $privacy)
+    {
+        $this->privacy = $privacy;
+    }
+
+    public function getTitle(): string
+    {
         return $this->title;
     }
 
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->title = $title;
     }
 
-    public function getDescription(): String {
+    public function getDescription(): string
+    {
         return $this->description;
     }
 
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
-    public function getDate() :String {
+    public function getDate(): string
+    {
         return $this->date->format("Y-m-d");
     }
 
-    public function setDate($date) {
+    public function setDate($date)
+    {
         $this->date = $date;
     }
 
-    public function getLikes() :int{
+    public function getLikes(): int
+    {
         return $this->likes;
     }
-    public function getCommentsAmount() : int{
+
+    public function getCommentsAmount(): int
+    {
         return $this->commentAmount;
     }
 

@@ -22,7 +22,7 @@
     margin-bottom: 1vh;
 }
 
-form p{
+form p {
     margin-bottom: 1vh;
 }
 
@@ -32,29 +32,31 @@ form p{
     align-items: center;
     text-align: center;
 }
-  
+
 .name div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.name p{
+.name p {
     text-align: left;
 }
-.name > .surname{
+
+.name > .surname {
     margin-left: 1.75vw;
 }
 
 .name input {
     width: 12vw;
 }
-  
-@media(max-width: 800px){
-    .name div, .surname div{
-        width:50%;
+
+@media (max-width: 800px) {
+    .name div, .surname div {
+        width: 50%;
     }
-    .name  input, .surname  input {
+
+    .name input, .surname input {
         width: auto;
     }
 }

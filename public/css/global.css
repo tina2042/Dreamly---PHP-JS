@@ -1,11 +1,14 @@
 *, *:before, *:after {
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
@@ -51,21 +54,21 @@ button {
     font-weight: 400;
     line-height: normal;
 }
-a{
+
+a {
     width: 100%;
 }
 
 
-.submit{
+.submit {
     margin-top: 1em;
-    box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
+    box-shadow: 0 4px 19px 0 rgba(119, 147, 65, 0.30);
 }
-
 
 
 .navbar {
     color: #444;
-    font-family: Poppins;
+
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -78,28 +81,29 @@ a{
     top: 0;
     z-index: 1000;
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-around;
 }
 
 .nav-link {
-    display: flex; /* Ustawienie flexbox dla elementu .nav-link */
-    flex-direction: row; /* Kolumnowy układ dla flexbox */
-    align-items: center; /* Wyśrodkowanie elementów wzdłuż osi x */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
     color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    width: calc(100vw / 4); /* Równy podział na trzy kolumny */
-    box-sizing: border-box; /* Uwzględnienie padding w szerokości */
+    width: calc(100vw / 4);
+    box-sizing: border-box;
 }
 
 .nav-link i, button i {
-    margin: 0vh 1vw 0vh 1vw; /* Dodatkowy odstęp pomiędzy ikoną a tekstem */
-    color:#a6a2da;
+    margin: 0 1vw 0 1vw;
+    color: #a6a2da;
 }
-form > #logoutButton i{
-    color:#9a87e2;
+
+form > #logoutButton i {
+    color: #9a87e2;
 }
 
 .nav-link:hover, .navbar form > button:hover {
@@ -107,19 +111,20 @@ form > #logoutButton i{
     color: black;
 }
 
-.navbar form > button{
+.navbar form > button {
     width: calc(100vw / 4);;
-    height: -webkit-fill-available;
     background: none;
     border-radius: 0;
     color: black;
     position: static;
     margin: 0;
 }
+
 .navbar form {
     justify-content: center;
     margin: 0;
 }
+
 .content {
     margin-top: 60px;
 }
@@ -129,11 +134,11 @@ form > #logoutButton i{
     position: fixed;
     bottom: 5vh;
     right: 3vw;
-    z-index: 999; 
-  }
-  
+    z-index: 999;
+}
 
-  .floating-button button {
+
+.floating-button button {
     padding: 10px 20px;
     border-radius: 35.765px;
     width: 15vw;
@@ -141,10 +146,11 @@ form > #logoutButton i{
     background: #C9B4EC;
     cursor: pointer;
 
-  }
-.dropdown-list{
+}
+
+.dropdown-list {
     margin-top: 1em;
-    box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
+    box-shadow: 0 4px 19px 0 rgba(119, 147, 65, 0.30);
     border-radius: 35.765px;
     background: #C9B4EC;
     width: 30%;
@@ -155,15 +161,17 @@ form > #logoutButton i{
     margin-right: 2rem;
 
 }
-.dropdown-list > select{
+
+.dropdown-list > select {
     background: #C9B4EC;
     border-color: #C9B4EC;
-    color:white;
+    color: white;
     font-family: Poppins;
     font-size: 1em;
 
 }
-#buttons{
+
+#buttons {
     display: flex;
     margin: 0 5vw;
     justify-content: flex-end;
@@ -174,12 +182,14 @@ form > #logoutButton i{
     .nav-link > span {
         display: none;
     }
-    .floating-button  {
-        right:40%;
+
+    .floating-button {
+        right: 40%;
         bottom: 1em;
         width: auto;
     }
-    .floating-button button{
+
+    .floating-button button {
         width: auto;
     }
 }

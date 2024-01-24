@@ -1,8 +1,11 @@
 <?php
-class UserStats {
+
+class UserStats
+{
     private int $dreams_amount;
     private int $like_amount;
     private int $comment_amount;
+
     public function __construct(int $dreams_amount1, int $like_amount1, int $comment_amount1)
     {
         $this->dreams_amount = $dreams_amount1;

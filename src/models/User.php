@@ -23,7 +23,6 @@ class User
     }
 
 
-
     public function setId(int $user_id): void
     {
         $this->user_id = $user_id;
@@ -55,14 +54,13 @@ class User
         return $this->surname;
     }
 
+    public function getPhoto(): string
+    {
+        return $this->photo;
+    }
 
     public function setPhoto($photo): void
     {
         $this->photo = $photo;
-    }
-
-    public function getPhoto(): string
-    {
-        return $this->photo;
     }
 }

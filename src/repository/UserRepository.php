@@ -14,47 +14,48 @@ class UserRepository extends Repository
         $stmt->execute();
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt=null;
+        $stmt = null;
         if (!$user) {
             return null;
         }
 
-        $thisuser=new User($user['email'],
-        $user['password'],
-        $user['name'],
-        $user['surname']);
+        $thisuser = new User($user['email'],
+            $user['password'],
+            $user['name'],
+            $user['surname']);
         $thisuser->setId($user['user_id']);
         $thisuser->setPhoto($user['photo']);
 
         return $thisuser;
     }
 
-    public function addUser(User $user) :void
+    public function addUser(User $user): void
     {
-            $stmt = $this->database->connect()->prepare('
+        $stmt = $this->database->connect()->prepare('
                 INSERT INTO usersdetails (name, surname)
                 VALUES (?, ?);
             ');
 
-            $stmt->execute([
-                $user->getName(),
-                $user->getSurname(),
-            ]);
+        $stmt->execute([
+            $user->getName(),
+            $user->getSurname(),
+        ]);
 
-            $stmt = $this->database->connect()->prepare('
+        $stmt = $this->database->connect()->prepare('
                 INSERT INTO users (email, password, detail_id)
                 VALUES (?, ?, ?);
             ');
 
-            $stmt->execute([
-                $user->getEmail(),
-                $user->getPassword(),
-                $this->getUserDetailsId($user)
-            ]);
+        $stmt->execute([
+            $user->getEmail(),
+            $user->getPassword(),
+            $this->getUserDetailsId($user)
+        ]);
 
-            $stmt = null;
+        $stmt = null;
 
     }
+
     public function getUserDetailsId(User $user): int
     {
         $stmt = $this->database->connect()->prepare('
@@ -64,9 +65,9 @@ class UserRepository extends Repository
         ');
         $name = $user->getName();
 
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':name', $name);
         $surname = $user->getSurname();
-        $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
+        $stmt->bindParam(':surname', $surname);
         $stmt->execute();
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -102,18 +103,16 @@ class UserRepository extends Repository
         $stmt->execute();
 
         $stats = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt=null;
+        $stmt = null;
 
-        if(!$stats)
+        if (!$stats)
             return null;
 
-        $result = new UserStats(
+        return new UserStats(
             $stats['dreams_amount'],
             $stats['like_amount'],
             $stats['comments_amount']
         );
-
-        return $result;
 
     }
 
@@ -130,7 +129,7 @@ class UserRepository extends Repository
         return $is_admin;
     }
 
-    public function getAllUsers()
+    public function getAllUsers():array
     {
 
         $result = [];
@@ -168,17 +167,18 @@ class UserRepository extends Repository
                CALL delete_user(:user_id);
               
         ');
-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
     }
 
-    public function getUserId(string $email): int{
+    public function getUserId(string $email): int
+    {
         $stmt = $this->database->connect()->prepare('
             SELECT user_id 
             FROM public.users 
             WHERE email = :email;
         ');
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -206,12 +206,12 @@ class UserRepository extends Repository
                 where friend_id = :user_id
             );
         ");
-        $query="%".$query."%";
-        $stmt->bindParam(':query', $query, PDO::PARAM_STR);
+        $query = "%" . $query . "%";
+        $stmt->bindParam(':query', $query);
         $stmt->bindParam(':user_id', $_COOKIE['user_id']);
         $stmt->execute();
 
-        $users=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt = null;
 
         return $users;

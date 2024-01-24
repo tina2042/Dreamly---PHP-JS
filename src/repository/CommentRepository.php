@@ -1,12 +1,12 @@
 <?php
 
 
-require_once "/app/autoloader.php";
+require_once "autoloader.php";
 
 class CommentRepository extends Repository
 {
 
-    function getDreamComments(int $dream_id)
+    function getDreamsComments():array
     {
         $result = [];
 
@@ -14,11 +14,11 @@ class CommentRepository extends Repository
             SELECT
                 *
             FROM comments
-            WHERE dream_id = :dream_id
+            join users on comments.user_id = users.user_id
+            join usersdetails on users.detail_id = usersdetails.detail_id
             ORDER BY comment_date DESC
         ');
 
-        $stmt->bindParam(':dream_id', $dream_id, PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -26,10 +26,15 @@ class CommentRepository extends Repository
 
         foreach ($comments as $comment) {
             if ($comment !== false) {
-
+                $user = new User(
+                    $comment['email'],
+                    "",
+                    $comment['name'],
+                    $comment['surname']
+                );
                 $result[] = new Comment(
                     $comment['comment_id'],
-                    $comment['user_id'],
+                    $user,
                     $comment['dream_id'],
                     $comment['comment_content'],
                     DateTime::createFromFormat('Y-m-d', $comment['comment_date']),
@@ -41,30 +46,5 @@ class CommentRepository extends Repository
 
         return $result;
     }
-    function getCommentOwner(int $comment_id)
-    {
-        $stmt = $this->database->connect()->prepare('
-            SELECT
-                *
-            FROM
-                users
-            LEFT JOIN
-                    usersdetails on users.detail_id = usersdetails.detail_id
-            JOIN
-                comments ON comments.user_id = users.user_id
-            WHERE
-                comments.comment_id = :comment_id
-            LIMIT 1;
-        ');
-        $stmt->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
 
-        $stmt->execute();
-
-        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $user=$users[0];
-            $result = new User($user['email'], $user['password'], $user['name'], $user['surname']);
-
-        return $result;
-    }
 }

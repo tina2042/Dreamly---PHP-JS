@@ -6,14 +6,26 @@ require_once "autoloader.php";
 class DreamRepository extends Repository
 {
 
-    private UserRepository$userRepository;
+    private UserRepository $userRepository;
+
     public function __construct()
     {
         parent::__construct();
-        $this->userRepository=new UserRepository();
+        $this->userRepository = new UserRepository();
     }
 
-    public function getMyDreams($returnType = 'object'):array
+    public function getMyLastDream()
+    {
+        $myDreams = $this->getMyDreams();
+
+        if (!empty($myDreams)) {
+            return $myDreams[0];
+        } else {
+            return null;
+        }
+    }
+
+    public function getMyDreams($returnType = 'object'): array
     {
 
         $result = [];
@@ -34,7 +46,7 @@ class DreamRepository extends Repository
         $user = $this->userRepository->getUser($_COOKIE['user_email']);
         foreach ($dreams as $dream) {
             if ($dream !== false) {
-                switch ($returnType){
+                switch ($returnType) {
                     case 'object':
                         $result[] = new Dream(
                             $user,
@@ -48,9 +60,9 @@ class DreamRepository extends Repository
                         break;
                     case 'array':
                         $result[] = [
-                            'title'=>$dream['title'],
-                            'content'=>$dream['content'],
-                            'dreamDate'=>  $dream['date']
+                            'title' => $dream['title'],
+                            'content' => $dream['content'],
+                            'dreamDate' => $dream['date']
                         ];
                         break;
                 }
@@ -61,17 +73,6 @@ class DreamRepository extends Repository
         }
 
         return $result;
-    }
-
-    public function getMyLastDream()
-    {
-        $myDreams = $this->getMyDreams();
-
-        if (!empty($myDreams)) {
-            return $myDreams[0];
-        } else {
-            return null;
-        }
     }
 
     public function getFriendDreams(): array
@@ -96,7 +97,7 @@ class DreamRepository extends Repository
 
         foreach ($dreams as $dream) {
             if ($dream !== false) {
-                $owner_email=$dream['email'];
+                $owner_email = $dream['email'];
 
                 $owner = $this->userRepository->getUser($owner_email);
 

@@ -1,6 +1,7 @@
-body{
+body {
     background: linear-gradient(to right, #A6A2DA 50%, #FFF 50%);
 }
+
 .loginrectangle form {
     width: 85%
 }
@@ -20,7 +21,6 @@ body{
 
 .Welcome > span {
     color: #3B5775;
-    font-family: 'Pacifico';
 }
 
 form {
@@ -37,18 +37,21 @@ input {
     color: #808080;
     font-size: 0.9em;
 }
+
 .notes img, .sally img {
     min-width: 100px;
     max-width: 400px;
     height: auto;
     z-index: -10;
 }
+
 .notes img {
     width: 30vw;
     position: absolute;
     left: 5%;
     top: 10px;
 }
+
 .loginrectangle {
     width: calc(100vw / 3);
     height: 90vh;
@@ -63,6 +66,7 @@ input {
 
     z-index: 10;
 }
+
 .sally img {
     width: 40vw;
     position: absolute;
@@ -70,10 +74,12 @@ input {
     top: 60%;
     transform: translateY(-50%);
 }
+
 form > p:last-of-type {
     text-align: center;
     margin: 1vh 0;
 }
+
 .social-buttons {
     display: flex;
     justify-content: space-between;
@@ -102,30 +108,37 @@ form > p:last-of-type {
     align-items: center;
     justify-content: center;
 }
-@media(max-width:800px){
-    .loginrectangle{
-        width:90%;
+
+@media (max-width: 800px) {
+    .loginrectangle {
+        width: 90%;
     }
-    body{
+
+    body {
         background: #A6A2DA;
     }
-    .top-section{
+
+    .top-section {
         flex-direction: column;
         margin-left: 4.75vw;
     }
-    .sally img, .notes img{
+
+    .sally img, .notes img {
         display: none;
     }
-    .social-buttons{
+
+    .social-buttons {
         flex-direction: column;
-        
+
     }
-    .social-buttons > .facebook, .social-buttons > .google{
+
+    .social-buttons > .facebook, .social-buttons > .google {
         height: 3em;
         flex: none;
         margin-bottom: 1em;
     }
-    .social-buttons > .facebook{
+
+    .social-buttons > .facebook {
         border: #3B5775 solid 1px;
     }
 
