@@ -11,7 +11,7 @@
           rel="stylesheet">
     <link rel="stylesheet" href="/public/css/global.css">
     <link rel="stylesheet" href="/public/css/main.css">
-    <script src="/public/js/script.js" defer></script>
+    <script src="/public/js/main.js" defer></script>
     <script src="/public/js/search.js" defer ></script>
 </head>
 <body>
@@ -77,21 +77,24 @@
         </div>
     <?php } else { ?>
         <div id="top">
+
             <h4><?= $dream->getTitle() ?></h4>
             <data><?= $dream->getDate() ?></data>
         </div>
         <p><?= $dream->getDescription() ?></p>
         <div id="social-icons">
-            <div>
-                <i class="fa-solid fa-heart fa-xl"></i>
+            <div class="likes">
+                <div >
+                    <i class="fa-solid fa-heart fa-xl like" data-dream-id="<?= $dream->getDreamId() ?>"></i>
+                </div>
                 <p><?= $dream->getLikes() ?></p>
             </div>
-            <div class="comment_icon">
-                <i class="fa-solid fa-comment fa-xl"></i>
-                <p><?= $dream->getCommentsAmount() ?></p>
+            <div class="comment_icon" data-dream-id="<?= $dream->getDreamId() ?>">
+                <i class="fa-solid fa-comment fa-xl" data-dream-id="<?= $dream->getDreamId() ?>" ></i>
+                <p data-dream-id="<?= $dream->getDreamId() ?>" ><?= $dream->getCommentsAmount() ?></p>
             </div>
         </div>
-        <div class="dream-comments">
+        <div class="dream-comments" data-dream-id="<?= $dream->getDreamId() ?>">
             <?php $commentRepository = new CommentRepository();
             $comments = $commentRepository->getDreamComments($dream->getDreamId());
             if (!empty($comments)) {
@@ -122,6 +125,7 @@
     foreach ($fdreams as $dream): ?>
         <div class="friend-dream">
             <div id="top">
+
                 <img src=<?= $dream->getOwner()->getPhoto() ?>>
                 <p><?= $dream->getOwner()->getName() ?></p>
                 <h4><?= $dream->getTitle() ?></h4>
@@ -131,17 +135,19 @@
             <div id="bottom">
                 <p><?= $dream->getDescription() ?></p>
                 <div id=social-icons>
-                    <div>
-                        <i class="fa-solid fa-heart fa-xl"></i>
+                    <div class="likes">
+                        <div >
+                        <i class="fa-solid fa-heart fa-xl like" data-dream-id="<?= $dream->getDreamId() ?>"></i>
+                        </div>
                         <p><?= $dream->getLikes() ?></p>
                     </div>
-                    <div>
-                        <i class="fa-solid fa-comment fa-xl"></i>
-                        <p><?= $dream->getCommentsAmount() ?></p>
+                    <div class="comment_icon" data-dream-id="<?= $dream->getDreamId() ?>">
+                        <i class="fa-solid fa-comment fa-xl" data-dream-id="<?= $dream->getDreamId() ?>" ></i>
+                        <p data-dream-id="<?= $dream->getDreamId() ?>" ><?= $dream->getCommentsAmount() ?></p>
                     </div>
                 </div>
             </div>
-            <div class="dream-comments">
+            <div class="dream-comments" data-dream-id="<?= $dream->getDreamId() ?>">
                 <?php $commentRepository = new CommentRepository();
                 $comments = $commentRepository->getDreamComments($dream->getDreamId());
                 if (!empty($comments)) {

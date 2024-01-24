@@ -93,6 +93,9 @@ button:hover{
     flex-direction: column;
     
 }
+#top span{
+    display: none;
+}
 .my-dream #top{
     display: flex;
 }
@@ -205,17 +208,22 @@ margin-top: 0.5em;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    margin-left:10%;
 }
-
+.name{
+    font-size: 2em;
+}
 .comment img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     margin-right: 10px;
 }
-
+.liked {
+    color:red;
+}
 .comment-text {
-    margin: 0;
+    margin-left:1.5em;
 }
 .sally img{
 
@@ -252,6 +260,7 @@ margin-top: 0.5em;
     height: 100%;
     border-radius: 0.5em 0 0 0.5em;
     margin: 10px 0 10px 10px;
+    box-shadow: 0 4px 19px 0 rgba(119, 147, 65, 0.30);
 }
 
 
@@ -263,6 +272,7 @@ margin-top: 0.5em;
     border-radius: 0 0.5em 0.5em 0;
     cursor: pointer;
     font-size: 20px;
+    box-shadow: 0 4px 19px 0 rgba(119, 147, 65, 0.30);
 }
 #search-results{
     margin-left:10px;

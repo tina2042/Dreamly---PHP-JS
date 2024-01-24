@@ -135,4 +135,55 @@ class DreamRepository extends Repository
             Visibility::getIntValue($dream->getPrivacy())
         ]);
     }
+
+    public function isLiked($dreamId): bool
+    {
+        $this_user = $_COOKIE['user_id'];
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT
+                * 
+            FROM public.likes
+            WHERE dream_id = :this_dream and user_id=$this_user;
+        ');
+
+        $stmt->bindParam(':this_user', $this_user, PDO::PARAM_INT);
+        $stmt->bindParam(':this_dream', $dreamId, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(is_null($result)) return false;
+        else return true;
+
+    }
+
+    public function like($dreamId)
+    {
+        $this_user = (int)$_COOKIE['user_id'];
+        var_dump($this_user);
+        var_dump($dreamId);
+        $stmt = $this->database->connect()->prepare('
+            DO $$
+                BEGIN
+                    IF EXISTS
+                        (SELECT 1
+                         FROM likes
+                         WHERE user_id = :this_user AND dream_id = :this_dream)
+                    THEN
+                        DELETE FROM likes
+                        WHERE user_id = :this_user AND dream_id = :this_dream;
+                    ELSE
+                        INSERT INTO likes (user_id, dream_id, date)
+                        VALUES (:this_user, :this_dream, current_date);
+                    END IF;
+                END $$;
+        ');
+
+        $stmt->bindParam(':this_user', $this_user, PDO::PARAM_INT);
+        $stmt->bindParam(':this_dream', $dreamId, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+    }
 }

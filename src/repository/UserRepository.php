@@ -197,6 +197,11 @@ class UserRepository extends Repository
                 SELECT friend_id
                 FROM friends
                 WHERE user_id = :user_id
+            )
+            AND user_id NOT IN(
+                select user_id 
+                from friends 
+                where friend_id = :user_id
             );
         ");
         $query="%".$query."%";

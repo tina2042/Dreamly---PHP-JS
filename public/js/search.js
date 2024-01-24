@@ -1,6 +1,6 @@
 const searchBar = document.querySelector('.searchTerm');
 const searchResults = document.querySelector('#search-results');
-
+const searchButton = document.querySelector('.searchButton');
 async function addFriend(user_id) {
     const formData = new FormData();
     formData.append('user_id', user_id);
@@ -17,11 +17,11 @@ async function addFriend(user_id) {
     }
 }
 
-async function searchFriends(query) {
+async function searchFriends(query, clicked) {
     searchResults.innerHTML = '';
     searchResults.style.display = 'none';
 
-    if (query.length >= 3) {
+    if (query.length >= 3 || clicked) {
         const formData = new FormData();
         formData.append('query', query);
 
@@ -65,6 +65,12 @@ let searchTimeout = false;
 searchBar.addEventListener('input', function() {
     if(searchTimeout) clearTimeout(searchTimeout);
     searchTimeout = setTimeout(()=>{
-        searchFriends(this.value);
+        searchFriends(this.value, false);
+    }, 250);
+});
+searchButton.addEventListener('click', function (){
+    if(searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(()=>{
+        searchFriends(searchBar.value, true);
     }, 250);
 });

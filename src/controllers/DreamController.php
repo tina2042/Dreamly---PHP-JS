@@ -74,4 +74,26 @@ class DreamController extends AppController {
         echo json_encode($result);
         die();
     }
+    public function isLiked()
+    {
+        $result = $this->dreamRepository->isLiked( $_POST['dreamId']);
+        echo json_encode($result);
+        die();
+    }
+    public function like()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (isset($data['dreamId'])) {
+
+                var_dump($data['dreamId']);
+                try {
+                    $this->dreamRepository->like(intval($data['dreamId']));
+                } catch (PDOException $e) {
+                    var_dump($e);
+                }
+            }
+            die();
+        }
+    }
 }

@@ -18,5 +18,7 @@ Routing::post('delete_user', 'SecurityController');
 Routing::get('get_dreams', 'DreamController');
 Routing::post('search', 'DefaultController');
 Routing::post('add_friend','DefaultController');
+Routing::post('isLiked', 'DreamController');
+Routing::post('like', 'DreamController');
 Routing::run($path);
 
