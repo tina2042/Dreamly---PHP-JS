@@ -71,7 +71,7 @@ Mobile version:
 ![image](https://github.com/tina2042/Dreamly/assets/101676734/5bf046b2-5b46-4d56-bc04-75b9e4add361)
 ![image](https://github.com/tina2042/Dreamly/assets/101676734/9851c82d-40f8-470f-bb37-71de7bdeffd4)
 
-#ERD
+# ERD
 
 ![Untitled](https://github.com/tina2042/Dreamly/assets/101676734/9338936a-2dc2-4fd6-943e-54d746ad1b19)
 
