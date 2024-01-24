@@ -13,7 +13,7 @@ class DreamRepository extends Repository
         $this->userRepository=new UserRepository();
     }
 
-    public function getMyDreams($returnType = 'object')
+    public function getMyDreams($returnType = 'object'):array
     {
 
         $result = [];
@@ -136,7 +136,7 @@ class DreamRepository extends Repository
         ]);
     }
 
-    public function isLiked($dreamId): bool
+    public function isLiked(): array
     {
         $this_user = $_COOKIE['user_id'];
 
@@ -144,17 +144,26 @@ class DreamRepository extends Repository
             SELECT
                 * 
             FROM public.likes
-            WHERE dream_id = :this_dream and user_id=$this_user;
+            WHERE user_id=:this_user;
         ');
 
         $stmt->bindParam(':this_user', $this_user, PDO::PARAM_INT);
-        $stmt->bindParam(':this_dream', $dreamId, PDO::PARAM_INT);
+
 
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $likes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = [];
 
-        if(is_null($result)) return false;
-        else return true;
+        if ($likes != null) {
+            foreach ($likes as $like) {
+                $result[] = $like['dream_id'];
+            }
+        } else {
+            $result = null;
+        }
+
+        return $result;
+
 
     }
 
@@ -164,20 +173,7 @@ class DreamRepository extends Repository
         var_dump($this_user);
         var_dump($dreamId);
         $stmt = $this->database->connect()->prepare('
-            DO $$
-                BEGIN
-                    IF EXISTS
-                        (SELECT 1
-                         FROM likes
-                         WHERE user_id = :this_user AND dream_id = :this_dream)
-                    THEN
-                        DELETE FROM likes
-                        WHERE user_id = :this_user AND dream_id = :this_dream;
-                    ELSE
-                        INSERT INTO likes (user_id, dream_id, date)
-                        VALUES (:this_user, :this_dream, current_date);
-                    END IF;
-                END $$;
+            CALL like_or_unlike_dream(:this_user, :this_dream);
         ');
 
         $stmt->bindParam(':this_user', $this_user, PDO::PARAM_INT);

@@ -164,7 +164,9 @@ class UserRepository extends Repository
     {
         $user_id = $this->getUserId($email);
         $stmt = $this->database->connect()->prepare('
+                
                CALL delete_user(:user_id);
+              
         ');
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
         $stmt->execute();

@@ -83,11 +83,9 @@
         </div>
         <p><?= $dream->getDescription() ?></p>
         <div id="social-icons">
-            <div class="likes">
-                <div >
-                    <i class="fa-solid fa-heart fa-xl like" data-dream-id="<?= $dream->getDreamId() ?>"></i>
-                </div>
-                <p><?= $dream->getLikes() ?></p>
+            <div class="likes" data-dream-id="<?= $dream->getDreamId() ?>">
+                <i class="fa-solid fa-heart fa-xl like" data-dream-id="<?= $dream->getDreamId() ?>"></i>
+                <p class="like-amount" data-dream-id="<?= $dream->getDreamId() ?>"><?= $dream->getLikes() ?></p>
             </div>
             <div class="comment_icon" data-dream-id="<?= $dream->getDreamId() ?>">
                 <i class="fa-solid fa-comment fa-xl" data-dream-id="<?= $dream->getDreamId() ?>" ></i>
@@ -135,11 +133,11 @@
             <div id="bottom">
                 <p><?= $dream->getDescription() ?></p>
                 <div id=social-icons>
-                    <div class="likes">
+                    <div class="likes"data-dream-id="<?= $dream->getDreamId() ?>">
                         <div >
                         <i class="fa-solid fa-heart fa-xl like" data-dream-id="<?= $dream->getDreamId() ?>"></i>
                         </div>
-                        <p><?= $dream->getLikes() ?></p>
+                        <p class="like-amount" data-dream-id="<?= $dream->getDreamId() ?>"><?= $dream->getLikes() ?></p>
                     </div>
                     <div class="comment_icon" data-dream-id="<?= $dream->getDreamId() ?>">
                         <i class="fa-solid fa-comment fa-xl" data-dream-id="<?= $dream->getDreamId() ?>" ></i>
